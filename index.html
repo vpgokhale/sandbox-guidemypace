@@ -1141,7 +1141,14 @@
   #trackSection .rt-legend span { display: inline-flex; align-items: center; gap: 5px; }
   #trackSection .rt-lg { display: inline-block; width: 16px; height: 16px; border-radius: 50%; font-style: normal; font-size: 11px; line-height: 16px; text-align: center; font-weight: 700; color: var(--rt-glyph); }
   #trackSection .rt-lg.g { background: var(--rt-grey); } #trackSection .rt-lg.rd { background: var(--rt-read); } #trackSection .rt-lg.ok { background: var(--rt-ok); } #trackSection .rt-lg.help { background: var(--rt-hlp); } #trackSection .rt-lg.bad { background: var(--rt-bad); } #trackSection .rt-lg.skip { background: var(--rt-skip); } #trackSection .rt-lg.hw { background: none; width: auto; font-size: 0.8rem; color: var(--ink); text-decoration: underline dotted var(--rt-help); text-underline-offset: 3px; }
-  #trackSection .rt-status { min-height: 1.4em; margin: 4px 0 8px; font-weight: 600; color: var(--ink); }
+  #trackSection .rt-status { min-height: 1.4em; margin: 4px 0 2px; font-weight: 600; color: var(--ink); }
+  #trackSection .rt-micbar { display: flex; align-items: center; gap: 12px; margin: 4px 0 6px; flex-wrap: wrap; }
+  #trackSection .rt-micbar[hidden] { display: none; }
+  #trackSection .rt-miclive { color: #dc2626; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; }
+  #trackSection .rt-miclive i { width: 10px; height: 10px; border-radius: 50%; background: #dc2626; display: inline-block; }
+  :root[data-theme="dark"] #trackSection .rt-miclive { color: #f87171; } :root[data-theme="dark"] #trackSection .rt-miclive i { background: #f87171; }
+  .rt-cell.bm .rt-dot::before { box-shadow: 0 0 0 4px var(--rt-ring); }
+  #trackSection .rt-timing { min-height: 1.2em; margin: 0 0 8px; font-size: .78rem; color: var(--muted, #6b7280); }
   #trackSection .rt-passage { padding: 6px 2px 2px; }
   #trackSection .rt-passage p.para-block { margin: 0 0 26px; }
   #trackSection .rt-passage p.para-block:last-child { margin-bottom: 0; }
@@ -1186,8 +1193,8 @@
         <a href="#" class="nav-menu-item" id="qaMenuLink" role="button"><span class="mi mi-qa" aria-hidden="true"><svg fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" stroke="#4338ca"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13l2 2 3.5-4M9 18h6"/></svg></span>Q&amp;A Form</a>
         <a href="#" class="nav-menu-item" id="gmPlanLink" role="button"><span class="mi mi-plan" aria-hidden="true"><svg fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" stroke="#0f766e"><circle cx="12" cy="12" r="9"/><path d="M12 7v5.2l3.4 2"/></svg></span>Time Manager</a>
         <a href="#" class="nav-menu-item" id="edMenuLink" role="button"><span class="mi mi-edit" aria-hidden="true"><svg fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" stroke="#2563eb"><path d="M4 20l1-4L16 5l3 3L8 19z"/><path d="M14 7l3 3"/></svg></span>Paragraph Editing</a>
-        <a href="#" class="nav-menu-item" id="fcMenuLink" role="button"><span class="mi mi-read" aria-hidden="true"><svg fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" stroke="#6d3fc4"><path d="M12 6c-2-1.5-5-2-8-1.5v13c3-.5 6 0 8 1.5 2-1.5 5-2 8-1.5v-13C17 4 14 4.5 12 6zM12 6v13"/></svg></span>Reading Flashcards</a>
-        <a href="#" class="nav-menu-item" id="rtMenuLink" role="button"><span class="mi mi-track" aria-hidden="true"><svg fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" stroke="#db2777"><path d="M4 6h5M12 6h8M4 14h7M14 14h6"/><circle cx="6.5" cy="9.7" r="1.3" fill="#db2777" stroke="none"/><circle cx="16" cy="9.7" r="1.3" fill="#db2777" stroke="none"/><circle cx="7.5" cy="17.7" r="1.3" fill="#db2777" stroke="none"/><circle cx="17" cy="17.7" r="1.3" fill="#db2777" stroke="none"/></svg></span>Reading Tracker</a>
+        <a href="#" class="nav-menu-item" id="fcMenuLink" role="button"><span class="mi mi-read" aria-hidden="true"><svg fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" stroke="#6d3fc4"><defs><mask id="fcIcoHome"><rect width="24" height="24" fill="#fff"/><rect x="5" y="5.5" width="18" height="15" rx="3.5" fill="#000" transform="rotate(6 14 13)"/></mask></defs><g mask="url(#fcIcoHome)"><rect x="3" y="5" width="15" height="11" rx="2" opacity=".6" transform="rotate(-8 10 10)"/></g><rect x="6.5" y="7" width="15" height="12" rx="2.2" transform="rotate(6 14 13)"/><path d="M10.5 12.5h7M10.5 15.5h4.5" transform="rotate(6 14 13)"/></svg></span>Reading Flashcards</a>
+        <a href="#" class="nav-menu-item" id="rtMenuLink" role="button"><span class="mi mi-track" aria-hidden="true"><svg fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" stroke="#db2777"><path d="M2.5 5.5h4.5M9.5 5.5h5M17 5.5h4.5" stroke-width="2.2"/><circle cx="4.75" cy="9.2" r="1.15" fill="#db2777" stroke="none"/><circle cx="12" cy="9.2" r="1.15" fill="#db2777" stroke="none"/><circle cx="19.25" cy="9.2" r="1.15" fill="#db2777" stroke="none"/><path d="M10.9 21.5V13.4a1.1 1.1 0 0 1 2.2 0V16.4h2.1a1.4 1.4 0 0 1 1.4 1.4V19a2.9 2.9 0 0 1-2.9 2.9h-1.8a2.9 2.9 0 0 1-2.3-1.1l-2-2.6a1.1 1.1 0 0 1 1.8-1.3l1.5 1.4" stroke-width="1.7" transform="translate(.4,1.6) rotate(45 12 12) translate(0,-.5)"/></svg></span>Reading Tracker</a>
       </div>
     </details>
     <!-- Tutorials drop-down. To add a video, put one more line inside .nav-menu-panel (and delete the
@@ -1227,14 +1234,14 @@
     <div class="home-grid">
     <button class="home-tile ht-plan" id="homePlanBtn" type="button"><span class="ht-ico" aria-hidden="true"><svg fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" stroke="#fff"><circle cx="12" cy="12" r="9"/><path d="M12 7v5.2l3.4 2"/></svg></span><span class="ht-text"><b>Time Manager</b><span>Plan tasks and<br>manage your time</span></span></button>
     <button class="home-tile ht-edit" id="homeEdBtn" type="button"><span class="ht-ico" aria-hidden="true"><svg fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" stroke="#fff"><path d="M4 20l1-4L16 5l3 3L8 19z"/><path d="M14 7l3 3"/></svg></span><span class="ht-text"><b>Paragraph Editing</b><span>Fix one sentence at a time,<br>with hints</span></span></button>
-    <button class="home-tile ht-read" id="homeFcBtn" type="button"><span class="ht-ico" aria-hidden="true"><svg fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" stroke="#fff"><path d="M12 6c-2-1.5-5-2-8-1.5v13c3-.5 6 0 8 1.5 2-1.5 5-2 8-1.5v-13C17 4 14 4.5 12 6zM12 6v13"/></svg></span><span class="ht-text"><b>Reading Flashcards</b><span>Practice words and phrases<br>out loud</span></span></button>
-    <button class="home-tile ht-track" id="homeRtBtn" type="button"><span class="ht-ico" aria-hidden="true"><svg fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" stroke="#fff"><path d="M4 6h5M12 6h8M4 14h7M14 14h6"/><circle cx="6.5" cy="9.7" r="1.3" fill="#fff" stroke="none"/><circle cx="16" cy="9.7" r="1.3" fill="#fff" stroke="none"/><circle cx="7.5" cy="17.7" r="1.3" fill="#fff" stroke="none"/><circle cx="17" cy="17.7" r="1.3" fill="#fff" stroke="none"/></svg></span><span class="ht-text"><b>Reading Tracker</b><span>Tap each dot and<br>read the word aloud</span></span></button>
+    <button class="home-tile ht-read" id="homeFcBtn" type="button"><span class="ht-ico" aria-hidden="true"><svg fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" stroke="#fff"><defs><mask id="fcIcoMenu"><rect width="24" height="24" fill="#fff"/><rect x="5" y="5.5" width="18" height="15" rx="3.5" fill="#000" transform="rotate(6 14 13)"/></mask></defs><g mask="url(#fcIcoMenu)"><rect x="3" y="5" width="15" height="11" rx="2" opacity=".6" transform="rotate(-8 10 10)"/></g><rect x="6.5" y="7" width="15" height="12" rx="2.2" transform="rotate(6 14 13)"/><path d="M10.5 12.5h7M10.5 15.5h4.5" transform="rotate(6 14 13)"/></svg></span><span class="ht-text"><b>Reading Flashcards</b><span>Practice words and phrases<br>out loud</span></span></button>
+    <button class="home-tile ht-track" id="homeRtBtn" type="button"><span class="ht-ico" aria-hidden="true"><svg fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" stroke="#fff"><path d="M2.5 5.5h4.5M9.5 5.5h5M17 5.5h4.5" stroke-width="2.2"/><circle cx="4.75" cy="9.2" r="1.15" fill="#fff" stroke="none"/><circle cx="12" cy="9.2" r="1.15" fill="#fff" stroke="none"/><circle cx="19.25" cy="9.2" r="1.15" fill="#fff" stroke="none"/><path d="M10.9 21.5V13.4a1.1 1.1 0 0 1 2.2 0V16.4h2.1a1.4 1.4 0 0 1 1.4 1.4V19a2.9 2.9 0 0 1-2.9 2.9h-1.8a2.9 2.9 0 0 1-2.3-1.1l-2-2.6a1.1 1.1 0 0 1 1.8-1.3l1.5 1.4" stroke-width="1.7" transform="translate(.4,1.6) rotate(45 12 12) translate(0,-.5)"/></svg></span><span class="ht-text"><b>Reading Tracker</b><span>Tap each dot and<br>read the word aloud</span></span></button>
     </div>
   </div>
 
   <!-- Reading Tracker: a passage (PDF) with a dot under every word. Tapping a dot listens for just that word and scores it. -->
   <div id="trackSection" hidden>
-    <div class="tool-banner ht-track" id="toolBanner_rt"><span class="tb-ico" aria-hidden="true"><svg fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" stroke="#fff"><path d="M4 6h5M12 6h8M4 14h7M14 14h6"/><circle cx="6.5" cy="9.7" r="1.3" fill="#fff" stroke="none"/><circle cx="16" cy="9.7" r="1.3" fill="#fff" stroke="none"/><circle cx="7.5" cy="17.7" r="1.3" fill="#fff" stroke="none"/><circle cx="17" cy="17.7" r="1.3" fill="#fff" stroke="none"/></svg></span><h2 class="tool-name">Reading Tracker</h2></div>
+    <div class="tool-banner ht-track" id="toolBanner_rt"><span class="tb-ico" aria-hidden="true"><svg fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" stroke="#fff"><path d="M2.5 5.5h4.5M9.5 5.5h5M17 5.5h4.5" stroke-width="2.2"/><circle cx="4.75" cy="9.2" r="1.15" fill="#fff" stroke="none"/><circle cx="12" cy="9.2" r="1.15" fill="#fff" stroke="none"/><circle cx="19.25" cy="9.2" r="1.15" fill="#fff" stroke="none"/><path d="M10.9 21.5V13.4a1.1 1.1 0 0 1 2.2 0V16.4h2.1a1.4 1.4 0 0 1 1.4 1.4V19a2.9 2.9 0 0 1-2.9 2.9h-1.8a2.9 2.9 0 0 1-2.3-1.1l-2-2.6a1.1 1.1 0 0 1 1.8-1.3l1.5 1.4" stroke-width="1.7" transform="translate(.4,1.6) rotate(45 12 12) translate(0,-.5)"/></svg></span><h2 class="tool-name">Reading Tracker</h2></div>
     <div class="card" id="rtSetupCard">
       <details class="card-toggle" id="rtSetupDetails" open>
         <summary class="card-toggle-summary"><h2>Setup Reading Tracker <span class="loaded-file" id="rtLoadedFile" hidden></span></h2></summary>
@@ -1245,7 +1252,7 @@
             <li>Tap a dot, then read <b>just that word</b> aloud; the dot turns <b>blue</b> once it is recorded (tap it again to redo it)</li>
             <li>Stuck? Tap the <b>word itself</b> to hear it read aloud (it is counted as help)</li>
             <li>When you are done, press <b>Score my reading</b>: words are colored like the Q&amp;A Form, and accuracy counts words read right without help</li>
-            <li><b>Cover unread text</b> is on, so only the part you are reading shows (turn it off below if you like)</li>
+            <li>Want fewer distractions? Turn on <b>Cover unread text</b> below to show only the part you are reading</li>
             <li>Use <b>Save results</b> for a PDF or CSV report</li>
             <li>Needs a microphone and Google Chrome or Microsoft Edge.</li>
           </ul>
@@ -1261,7 +1268,11 @@
             <div class="row"><button type="button" class="btn-secondary btn-xs" id="rtUseTextBtn">Use this text</button></div>
           </details>
           <div class="cover-controls" style="margin-top:14px">
-            <label class="cover-toggle-label"><input type="checkbox" id="rtCoverToggle" checked> Cover unread text</label>
+            <label class="cover-toggle-label"><input type="checkbox" id="rtBmToggle"> Bookmark mode (microphone stays on)</label>
+            <details class="info-tip"><summary aria-label="More info">i</summary><div class="info-tip-body">For faster readers (90 words a minute or more), where tapping a dot for every word is too slow. Your first tap turns the microphone on and it stays on until you press <b>Stop listening</b> (or 10 minutes pass). Tap the dot under the word where you are starting, then tap again at the start of each new phrase or line as you read. Afterwards, what was heard is matched to the words between your taps. Turning this on sets Word Cover to 0 and Line Cover to 2 so the next dot is within reach. Guide My Pace does not save any audio, but your browser&rsquo;s speech service is listening the whole time the microphone is on.</div></details>
+          </div>
+          <div class="cover-controls" style="margin-top:6px">
+            <label class="cover-toggle-label"><input type="checkbox" id="rtCoverToggle"> Cover unread text</label>
             <span class="color-field">Block color: <input type="color" id="rtMaskColor" value="#9ca3af"></span>
             <details class="info-tip"><summary aria-label="More info">i</summary><div class="info-tip-body">Blocks out the rest of the line and every line below it, so only the part you are reading stays visible. The cover moves on once you have tried a word (right or not), and words you have already tried stay visible so you can go back and retry them.</div></details>
           </div>
@@ -1301,6 +1312,8 @@
         <span><i class="rt-lg hw">Aa</i> Tap a word to hear it</span>
       </div>
       <div class="status-line rt-status" id="rtStatus" role="status" aria-live="polite"></div>
+      <div class="rt-micbar" id="rtMicBar" hidden><span class="rt-miclive"><i></i> Microphone is on</span><button type="button" class="btn-primary btn-xs" id="rtStopBtn">Stop listening</button></div>
+      <div class="rt-timing" id="rtTiming"></div>
       <div class="reading-area rt-passage" id="rtPassage"></div>
       <div class="row"><button type="button" class="btn-primary" id="rtScoreBtn2" disabled>Score my reading</button></div>
       <div class="rt-practice" id="rtPractice" hidden><span class="rt-stat-label">Words to practice:</span> <span id="rtPracticeList"></span></div>
@@ -1381,7 +1394,7 @@
   <!-- Tools > Reading Flash Cards: loads a passage, then shows it one word (or one short phrase) at a time. Reuses the same listening,
        highlighting, helper and transcript code as the question screen. Everything stays in this browser. -->
   <div id="flashSection" hidden>
-    <div class="tool-banner ht-read" id="toolBanner_fc"><span class="tb-ico" aria-hidden="true"><svg fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" stroke="#fff"><path d="M12 6c-2-1.5-5-2-8-1.5v13c3-.5 6 0 8 1.5 2-1.5 5-2 8-1.5v-13C17 4 14 4.5 12 6zM12 6v13"/></svg></span><h2 class="tool-name">Reading Flashcards</h2></div>
+    <div class="tool-banner ht-read" id="toolBanner_fc"><span class="tb-ico" aria-hidden="true"><svg fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" stroke="#fff"><defs><mask id="fcIcoBanner"><rect width="24" height="24" fill="#fff"/><rect x="5" y="5.5" width="18" height="15" rx="3.5" fill="#000" transform="rotate(6 14 13)"/></mask></defs><g mask="url(#fcIcoBanner)"><rect x="3" y="5" width="15" height="11" rx="2" opacity=".6" transform="rotate(-8 10 10)"/></g><rect x="6.5" y="7" width="15" height="12" rx="2.2" transform="rotate(6 14 13)"/><path d="M10.5 12.5h7M10.5 15.5h4.5" transform="rotate(6 14 13)"/></svg></span><h2 class="tool-name">Reading Flashcards</h2></div>
     <div class="card" id="fcLoadCard">
       <details class="card-toggle" id="fcLoadDetails" open>
         <summary class="card-toggle-summary"><h2>Setup Reading Flashcards</h2></summary>
@@ -2082,7 +2095,7 @@
 
 <!-- Build stamp. BUMP the version and data-updated (UTC, ISO 8601) every time this file changes, so
      "which copy am I running?" always has an answer. The time is shown in the viewer's own time zone. -->
-<div class="app-version" id="appVersionFooter" data-version="2.77" data-updated="2026-11-11T05:35:00Z">Version 2.77 · Last updated 2026-11-11 05:35 UTC</div>
+<div class="app-version" id="appVersionFooter" data-version="2.80" data-updated="2026-11-11T07:06:00Z">Version 2.80 · Last updated 2026-11-11 07:06 UTC</div>
 <script>
   (function () {
     try {
@@ -12795,13 +12808,17 @@
   const rtSection = document.getElementById('trackSection');
   const rt = { title: '', words: [], paras: [], cells: [] };
   let rtActive = null, rtMaskTimer = null;
+  // Bookmark mode: one continuous recognizer; a tap on a dot is a bookmark ("I am at this word") instead of a per-word recording.
+  const rtBm = { on: false, rec: null, paused: false, ready: false, committed: [], cur: [], anchors: [], timer: null, restarts: 0 };
+  const rtBmMaxMs = 10 * 60 * 1000;
+  const rtBmLag = 4; // words the recognizer can still be behind the reader when a bookmark is tapped
   const rtEl = function (id) { return document.getElementById(id); };
   const rtPassage = rtEl('rtPassage'), rtStatus = rtEl('rtStatus'), rtLoadStatus = rtEl('rtLoadStatus');
-  const rtCoverToggle = rtEl('rtCoverToggle'), rtWordsSel = rtEl('rtWordsSel'), rtLinesSel = rtEl('rtLinesSel');
+  const rtBmToggle = rtEl('rtBmToggle'), rtCoverToggle = rtEl('rtCoverToggle'), rtWordsSel = rtEl('rtWordsSel'), rtLinesSel = rtEl('rtLinesSel');
   const rtListenMs = 10000;
   // The recognizer is stopped once what it has heard stops changing for this long, rather than waiting for it to decide the speech
   // has ended (that wait is what made each word take seconds).
-  const rtSettleMs = 700;
+  const rtSettleMs = 450;
   const RT_EDGE = /^[^A-Za-z0-9À-ɏ]+|[^A-Za-z0-9À-ɏ]+$/g;
 
   function rtNorm(w) { return normalize(String(w).normalize('NFD').replace(/[̀-ͯ]/g, '')); }
@@ -12842,7 +12859,7 @@
     rtPaint();
   }
   // The cover sits just past the furthest word that has been read.
-  function rtPointer() { let last = -1; rt.words.forEach(function (w, i) { if (w.reads > 0) last = i; }); return last + 1; }
+  function rtPointer() { if (rtBm.on && rtBm.anchors.length) return rtBm.anchors[rtBm.anchors.length - 1].j; let last = -1; rt.words.forEach(function (w, i) { if (w.reads > 0) last = i; }); return last + 1; }
   function rtApplyMask() {
     const on = rtCoverToggle.checked;
     rtEl('rtRevealControls').hidden = !on;
@@ -12853,14 +12870,19 @@
   function rtScheduleMask() { clearTimeout(rtMaskTimer); rtMaskTimer = setTimeout(rtApplyMask, 150); }
   const RT_STATES = ['read', 'correct', 'helped', 'incorrect', 'skipped'];
   const RT_LABEL = { pending: 'Not read', read: 'Read, not scored yet', correct: 'Correct', helped: 'Correct with help', incorrect: 'Incorrect', skipped: 'Skipped' };
-  function rtPaint() {
-    rt.words.forEach(function (w, i) {
-      const c = rt.cells[i]; if (!c) return;
-      RT_STATES.forEach(function (s) { c.classList.toggle('is-' + s, w.status === s); });
-      c.classList.toggle('live', !!rtActive && rtActive.idx === i); c.classList.toggle('ready', !!rtActive && rtActive.idx === i && !!rtActive.ready);
-      c.classList.toggle('hlp', w.helps > 0);
-      c.lastChild.setAttribute('aria-label', 'Read the word ' + w.raw + ' (' + RT_LABEL[w.status].toLowerCase() + (w.helps ? ', you heard it read aloud' : '') + ')');
-    });
+  function rtPaintCell(i) {
+    const w = rt.words[i], c = rt.cells[i]; if (!w || !c) return;
+    RT_STATES.forEach(function (s) { c.classList.toggle('is-' + s, w.status === s); });
+    c.classList.toggle('live', !!rtActive && rtActive.idx === i); c.classList.toggle('ready', !!rtActive && rtActive.idx === i && !!rtActive.ready);
+    c.classList.toggle('hlp', w.helps > 0);
+    c.classList.toggle('bm', rtBm.on && rtBm.anchors.length > 0 && rtBm.anchors[rtBm.anchors.length - 1].j === i);
+    const al = 'Read the word ' + w.raw + ' (' + RT_LABEL[w.status].toLowerCase() + (w.helps ? ', you heard it read aloud' : '') + ')';
+    if (c.lastChild.getAttribute('aria-label') !== al) c.lastChild.setAttribute('aria-label', al);
+  }
+  // No argument: repaint everything. A list of word numbers: repaint just those (quick, used while a word is being listened to).
+  function rtPaint(only) {
+    if (only) { only.forEach(rtPaintCell); return; }
+    rt.words.forEach(function (w, i) { rtPaintCell(i); });
     rtApplyMask(); rtUpdateStats();
   }
   function rtStats() {
@@ -12908,7 +12930,7 @@
     if (!rtActive) return;
     const a = rtActive; rtActive = null; a.done = true; clearTimeout(a.timer); clearTimeout(a.settle);
     try { a.rec.abort(); } catch (e) { /* already stopped */ }
-    rtPaint();
+    rtPaint([a.idx]);
   }
   // kind: 'got' (something was heard; `heard` is the list of alternatives) | 'silence' | 'denied' | 'nomic' | 'error'
   function rtFinish(act, kind, heard) {
@@ -12916,10 +12938,14 @@
     act.done = true; clearTimeout(act.timer); clearTimeout(act.settle);
     if (rtActive === act) rtActive = null;
     try { act.rec.abort(); } catch (e) { /* already stopped */ }
-    const w = rt.words[act.idx], shown = rtShown(w);
-    if (kind === 'got') {
-      w.reads++; w.alts = heard.slice(); w.status = 'read';
+    const w = rt.words[act.idx], shown = rtShown(w), wasRecorded = act.recorded;
+    // Once something has been heard the word stays recorded, whatever ends the listening.
+    if (act.recorded && kind !== 'got') kind = 'kept';
+    if (kind === 'got' || kind === 'kept') {
+      if (kind === 'got') w.alts = heard.slice();
+      if (!act.recorded) { w.reads++; w.status = 'read'; act.recorded = true; act.tRec = performance.now(); }
       rtSay('“' + shown + '” recorded. Tap the next dot, or press Score my reading when you are done.');
+      rtTiming(act);
     } else if (kind === 'denied') {
       rtSay("Guide My Pace can't use the microphone. Allow microphone access for this site, then tap the dot again.");
     } else if (kind === 'nomic') {
@@ -12929,21 +12955,28 @@
     } else {
       rtSay("I didn't hear anything. Tap the dot and say “" + shown + '”.');
     }
-    rtPaint();
+    if (act.recorded && !wasRecorded) rtPaint(); else rtPaint([act.idx]);
+  }
+  // A small readout of where the time went on the last word, to help find what is slow on a real device.
+  function rtTiming(act) {
+    const el = rtEl('rtTiming'); if (!el) return;
+    const sec = function (t) { return t == null ? '–' : ((t - act.t0) / 1000).toFixed(1) + ' s'; };
+    el.textContent = 'Speed check, last word: microphone ready ' + sec(act.tReady) + ' · first words heard ' + sec(act.tHeard) + ' · marked blue ' + sec(act.tRec);
   }
   function rtListen(i) {
     const w = rt.words[i]; if (!w) return;
+    if (rtBmToggle.checked) { rtBmTap(i); return; }
     if (rtActive) { const same = rtActive.idx === i; rtCancel(); if (same) { rtSay('Stopped listening.'); return; } }
     if (!ExamSR) { rtSay("This browser can't listen to speech. Use Google Chrome or Microsoft Edge."); return; }
     if (examEngineListening) examEngineStop();
     try { window.speechSynthesis.cancel(); } catch (e) { /* ignore */ }
     const rec = new ExamSR();
     rec.continuous = false; rec.interimResults = true; rec.maxAlternatives = 3; rec.lang = 'en-US';
-    const act = { idx: i, rec: rec, done: false, timer: null, settle: null };
+    const act = { idx: i, rec: rec, done: false, timer: null, settle: null, recorded: false, t0: performance.now(), tReady: null, tHeard: null, tRec: null };
     rtActive = act;
     const shown = rtShown(w);
     // The microphone takes a moment to open. Until it has, say so (and keep the dot grey), so nobody starts talking too early.
-    const ready = function () { if (act.done || act.ready) return; act.ready = true; rtSay('Listening for “' + shown + '” … say it now.'); const c = rt.cells[i]; if (c) c.classList.add('ready'); };
+    const ready = function () { if (act.done || act.ready) return; act.ready = true; act.tReady = performance.now(); rtSay('Listening for “' + shown + '” … say it now.'); const c = rt.cells[i]; if (c) c.classList.add('ready'); };
     if ('onaudiostart' in rec) rec.onaudiostart = ready; else rec.onstart = ready;
     rec.onresult = function (ev) {
       if (act.done) return;
@@ -12955,7 +12988,16 @@
       }
       clearTimeout(act.settle);
       if (!heard.length) { if (final) rtFinish(act, 'silence'); return; }
-      if (final) { rtFinish(act, 'got', heard); return; }
+      if (final) { if (act.tHeard == null) act.tHeard = performance.now(); rtFinish(act, 'got', heard); return; }
+      // Mark the word as read the moment the first words arrive; the recognizer keeps refining what it heard until it settles.
+      const w2 = rt.words[act.idx];
+      if (act.tHeard == null) act.tHeard = performance.now();
+      w2.alts = heard.slice();
+      if (!act.recorded) {
+        act.recorded = true; act.tRec = performance.now(); w2.reads++; w2.status = 'read';
+        rtSay('“' + rtShown(w2) + '” recorded. Tap the next dot, or press Score my reading when you are done.');
+        rtPaint();
+      }
       act.settle = setTimeout(function () { rtFinish(act, 'got', heard); }, rtSettleMs);
     };
     rec.onerror = function (ev) {
@@ -12969,15 +13011,162 @@
     catch (e) { rtActive = null; act.done = true; rtSay('Could not start listening. Tap the dot to try again.'); return; }
     act.timer = setTimeout(function () { rtFinish(act, 'silence'); }, rtListenMs);
     rtSay('Getting the microphone ready …');
+    rtPaint([i]);
+  }
+
+  // ---- Bookmark mode ----
+  function rtBmTokens() { return (rtBm.committed.join(' ') + ' ' + rtBm.cur.join(' ')).split(/\s+/).map(rtNorm).filter(Boolean); }
+  function rtBmCommit() { if (rtBm.cur.length) rtBm.committed.push(rtBm.cur.join(' ')); rtBm.cur = []; }
+  function rtBmUi() { rtEl('rtMicBar').hidden = !rtBm.on; }
+  function rtBmShowHeard() {
+    const t = rtBmTokens(); rtEl('rtTiming').textContent = rtBm.on ? 'Heard: ' + (t.length > 8 ? '… ' : '') + t.slice(-8).join(' ') : '';
+  }
+  function rtBmStartRec() {
+    if (!rtBm.on || rtBm.paused || rtBm.rec) return;
+    const rec = new ExamSR();
+    rec.continuous = true; rec.interimResults = true; rec.maxAlternatives = 1; rec.lang = 'en-US';
+    rtBm.rec = rec; rtBm.cur = [];
+    const ready = function () {
+      if (rtBm.rec !== rec || !rtBm.on || rtBm.ready) return;
+      rtBm.ready = true; rtSay('Listening. Read, and tap the dot at the start of each new phrase or line. Press Stop listening when you finish.');
+    };
+    if ('onaudiostart' in rec) rec.onaudiostart = ready; else rec.onstart = ready;
+    rec.onresult = function (ev) {
+      if (rtBm.rec !== rec) return;
+      for (let r = ev.resultIndex; r < ev.results.length; r++) { const t = String((ev.results[r][0] || {}).transcript || '').trim(); rtBm.cur[r] = t; }
+      rtBmShowHeard();
+    };
+    rec.onerror = function (ev) {
+      if (rtBm.rec !== rec) return;
+      if (ev.error === 'not-allowed' || ev.error === 'service-not-allowed') rtBmStop('denied');
+      else if (ev.error === 'audio-capture') rtBmStop('nomic');
+      else if (ev.error !== 'no-speech' && ev.error !== 'aborted') rtBmStop('error', ev.error);
+    };
+    // Browsers end a continuous session now and then (a pause, a time limit). Keep what was heard and open a new one.
+    rec.onend = function () {
+      if (rtBm.rec !== rec) return;
+      rtBmCommit(); rtBm.rec = null;
+      if (rtBm.on && !rtBm.paused) { if (++rtBm.restarts > 300) { rtBmStop('error', 'stopped repeatedly'); return; } setTimeout(rtBmStartRec, 150); }
+    };
+    try { rec.start(); } catch (e) { rtBm.rec = null; setTimeout(function () { if (rtBm.on && !rtBm.paused && !rtBm.rec) { try { rtBmStartRec(); } catch (e2) { rtBmStop('error', 'could not start'); } } }, 300); }
+  }
+  function rtBmTap(i) {
+    if (!ExamSR) { rtSay("This browser can't listen to speech. Use Google Chrome or Microsoft Edge."); return; }
+    const w = rt.words[i]; if (!w) return;
+    if (!rtBm.on) {
+      rtCancel();
+      if (examEngineListening) examEngineStop();
+      try { window.speechSynthesis.cancel(); } catch (e) { /* ignore */ }
+      rtBm.on = true; rtBm.paused = false; rtBm.ready = false; rtBm.committed = []; rtBm.cur = []; rtBm.restarts = 0; rtBm.rec = null;
+      rtBm.anchors = [{ j: i, p: 0 }];
+      rtBm.timer = setTimeout(function () { rtBmStop('limit'); }, rtBmMaxMs);
+      rtSay('Getting the microphone ready …');
+      rtBmUi(); rtBmShowHeard(); rtBmStartRec(); rtPaint();
+      return;
+    }
+    const prev = rtBm.anchors[rtBm.anchors.length - 1];
+    rtBm.anchors.push({ j: i, p: rtBmTokens().length });
+    // The words you have just read through turn blue straight away (they are checked when you stop).
+    for (let k = prev.j; k < i; k++) { const x = rt.words[k]; if (x.reads === 0) { x.reads = 1; x.status = 'read'; x.alts = []; } }
+    rtSay('Bookmark at “' + rtShown(w) + '”. Keep reading.');
     rtPaint();
   }
+  // Pause while the device says a word (so it does not hear itself), then pick up again.
+  function rtBmPause() {
+    if (!rtBm.on || rtBm.paused) return;
+    rtBm.paused = true; const rec = rtBm.rec; rtBm.rec = null;
+    rtBmCommit(); try { if (rec) rec.abort(); } catch (e) { /* already stopped */ }
+  }
+  function rtBmResume() { if (!rtBm.on) return; rtBm.paused = false; rtBmStartRec(); }
+
+  // Match the words heard to the words between the bookmarks. Cost: a match 0; a different word 1; a word never heard 1;
+  // a heard word that matches nothing 0.5.
+  function rtBmTokMatch(t, w) { return t === w.norm || rtHeardMatches(t, w); }
+  function rtBmAlignChunk(startWord, endWord, toks, openEnd) {
+    const m = endWord - startWord + 1, n = toks.length;
+    const D = [], mt = [];
+    for (let a = 0; a <= m; a++) { D.push(new Float32Array(n + 1).fill(Infinity)); mt.push(new Int8Array(n + 1)); }
+    // Only cells near the diagonal are worked out (a reader does not drift more than a few dozen words from the text), which keeps
+    // a long stretch between bookmarks quick.
+    const band = Math.max(40, Math.abs(m - n) + 10);
+    D[0][0] = 0;
+    for (let b = 1; b <= n && b <= band; b++) D[0][b] = D[0][b - 1] + 0.5;
+    for (let a = 1; a <= m && a <= band; a++) D[a][0] = D[a - 1][0] + 1;
+    for (let a = 1; a <= m; a++) {
+      const w = rt.words[startWord + a - 1];
+      for (let b = Math.max(1, a - band); b <= n && b <= a + band; b++) {
+        const ok = rtBmTokMatch(toks[b - 1], w); mt[a][b] = ok ? 1 : 0;
+        const diag = D[a - 1][b - 1] + (ok ? 0 : 1), del = D[a - 1][b] + 1, ins = D[a][b - 1] + 0.5;
+        D[a][b] = Math.min(diag, del, ins);
+      }
+    }
+    // Where the alignment ends: a closed chunk uses every expected word and as few heard words as it needs; an open one uses
+    // every heard word and as few expected words as it needs.
+    let ea = m, eb = n;
+    if (!openEnd) { let best = Infinity; for (let b = 0; b <= n; b++) if (D[m][b] < best - 1e-6) { best = D[m][b]; eb = b; } }
+    else { let best = Infinity; for (let a = 0; a <= m; a++) if (D[a][n] < best - 1e-6) { best = D[a][n]; ea = a; } }
+    const out = new Array(ea).fill(null);
+    let a = ea, b = eb;
+    while (a > 0 || b > 0) {
+      if (a > 0 && b > 0 && Math.abs(D[a][b] - (D[a - 1][b - 1] + (mt[a][b] ? 0 : 1))) < 1e-6) { out[a - 1] = toks[b - 1]; a--; b--; }
+      else if (a > 0 && Math.abs(D[a][b] - (D[a - 1][b] + 1)) < 1e-6) { a--; }
+      else if (b > 0) { b--; }
+      else { a--; }
+    }
+    return { out: out, usedWords: ea, usedToks: eb };
+  }
+  function rtBmAlign() {
+    const A = rtBm.anchors; if (!A.length) return;
+    const toks = rtBmTokens(), n = rt.words.length; let q = 0;
+    for (let k = 0; k < A.length; k++) {
+      const cur = A[k], next = A[k + 1];
+      const closed = !!next && next.j > cur.j;
+      const upper = next ? Math.min(toks.length, next.p + rtBmLag) : toks.length;
+      const win = toks.slice(Math.min(q, upper), upper);
+      const endWord = closed ? next.j - 1 : Math.min(n - 1, cur.j + win.length + rtBmLag);
+      if (endWord < cur.j) continue;
+      for (let x = cur.j; x <= endWord; x++) { const w = rt.words[x]; w.reads = 0; w.status = 'pending'; w.alts = []; }
+      const r = rtBmAlignChunk(cur.j, endWord, win, !closed);
+      r.out.forEach(function (tok, e) { if (tok != null) { const w = rt.words[cur.j + e]; w.reads = 1; w.status = 'read'; w.alts = [tok]; } });
+      q += r.usedToks;
+    }
+  }
+  const RT_BM_MSG = {
+    done: 'Microphone off. Press Score my reading to see the results.',
+    limit: 'The microphone turned off after 10 minutes. Press Score my reading to see the results.',
+    hidden: 'The microphone turned off because the page was hidden. Press Score my reading to see the results.',
+    denied: "Guide My Pace can't use the microphone. Allow microphone access for this site, then tap a dot to start again.",
+    nomic: 'No microphone was found. Check that one is connected, then tap a dot to start again.'
+  };
+  function rtBmStop(reason, detail) {
+    if (!rtBm.on) return;
+    rtBm.on = false; clearTimeout(rtBm.timer);
+    const rec = rtBm.rec; rtBm.rec = null; try { if (rec) rec.abort(); } catch (e) { /* already stopped */ }
+    rtBmCommit();
+    rtBmAlign();
+    rtBmUi();
+    const heard = rtBmTokens().length;
+    rtEl('rtTiming').textContent = heard ? 'Heard ' + heard + (heard === 1 ? ' word.' : ' words.') : '';
+    if (reason === 'error') rtSay('Listening stopped (' + (detail || 'error') + '). Press Score my reading, or tap a dot to start again.');
+    else if (reason !== 'score') rtSay(heard || reason !== 'done' ? (RT_BM_MSG[reason] || RT_BM_MSG.done) : "I didn't hear anything. Tap a dot and start reading.");
+    rtPaint();
+  }
+  rtEl('rtStopBtn').addEventListener('click', function () { rtBmStop('done'); });
+  document.addEventListener('visibilitychange', function () { if (document.hidden && rtBm.on) rtBmStop('hidden'); });
+  rtBmToggle.addEventListener('change', function () {
+    rtCancel();
+    if (rtBmToggle.checked) { rtWordsSel.value = '0'; rtLinesSel.value = '2'; rtApplyMask(); rtSay('Bookmark mode: tap the dot under the word where you start. The microphone then stays on until you press Stop listening.'); }
+    else { rtBmStop('done'); rtSay('Bookmark mode is off. Tap a dot, then read just that word.'); }
+  });
+
   // Tapping the word itself: the device says it, and it is counted as help for that word.
   function rtHelp(i) {
     const w = rt.words[i], c = rt.cells[i]; if (!w || !c || c.classList.contains('covered')) return;
     rtCancel();
     w.helps++;
     const shown = rtShown(w);
-    speakTts(shown, null);
+    if (rtBm.on) { rtBmPause(); speakTts(shown, null, function () { setTimeout(rtBmResume, 300); }); }
+    else speakTts(shown, null);
     rtSay('Here is “' + shown + '”. Tap its dot and say it yourself.');
     rtPaint();
   }
@@ -12990,6 +13179,7 @@
 
   // ---- scoring: everything recorded is compared with the text; running it again re-scores from scratch ----
   function rtScore() {
+    if (rtBm.on) rtBmStop('score');
     if (!rt.words.some(function (w) { return w.reads > 0; })) return;
     rtCancel();
     let last = -1; rt.words.forEach(function (w, i) { if (w.reads > 0) last = i; });
@@ -13006,7 +13196,7 @@
 
   // ---- loading a passage ----
   function rtApplyText(text, title) {
-    rtCancel();
+    rtCancel(); rtBmStop('done');
     rtBuild(text); rt.title = title || '';
     rtEl('rtText').value = text;
     rtEl('rtTextBox').hidden = !rt.words.length;
@@ -13029,7 +13219,7 @@
   });
   rtEl('rtUseTextBtn').addEventListener('click', function () { rtApplyText(rtEl('rtText').value, rt.title); });
   rtEl('rtResetBtn').addEventListener('click', function () {
-    rtCancel();
+    rtCancel(); rtBmStop('done');
     rt.words.forEach(function (w) { w.status = 'pending'; w.reads = 0; w.alts = []; w.helps = 0; });
     rtSay('Started over. Tap a dot, then read that word aloud.'); rtEl('rtSaveStatus').textContent = '';
     rtPaint();
@@ -13124,12 +13314,12 @@
       qaSection.hidden = true; homeSection.hidden = true; rtSection.hidden = false;
       rtApplyMask(); rtScheduleMask();
     } else {
-      rtCancel(); rtSection.hidden = true; homeSection.hidden = false;
+      rtCancel(); rtBmStop('done'); rtSection.hidden = true; homeSection.hidden = false;
     }
     window.scrollTo(0, 0);
   }
   // Called by the other tools' own show functions when they open: just closes the tracker (they hide Home themselves).
-  function rtHide() { if (!rtSection.hidden) { rtCancel(); rtSection.hidden = true; } }
+  function rtHide() { if (!rtSection.hidden) { rtCancel(); rtBmStop('done'); rtSection.hidden = true; } }
   rtEl('rtMenuLink').addEventListener('click', function (e) { e.preventDefault(); toolsMenu.open = false; rtShow(true); });
   rtEl('homeRtBtn').addEventListener('click', function () { rtShow(true); });
 
