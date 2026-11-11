@@ -1133,6 +1133,7 @@
   #trackSection ul.rt-steps { margin: 6px 0 0; padding-left: 22px; line-height: 1.55; font-size: 0.88rem; color: var(--muted); }
   #trackSection .rt-stats { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 10px; }
   #trackSection .rt-stat { flex: 1 1 140px; display: flex; flex-direction: column; gap: 2px; padding: 8px 12px; border: 1px solid var(--border); border-radius: 12px; background: var(--surface); }
+  #trackSection .rt-stats-break { flex-basis: 100%; height: 0; margin: -10px 0 0; }
   #trackSection .rt-stat b { font-size: 1.5rem; color: var(--brand); line-height: 1.15; }
   #trackSection .rt-stat-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
   #trackSection .rt-stat-sub { font-size: 0.78rem; color: var(--muted); }
@@ -1140,13 +1141,24 @@
   #trackSection .rt-legend { display: flex; flex-wrap: wrap; gap: 6px 18px; align-items: center; font-size: 0.82rem; color: var(--muted); margin-bottom: 6px; }
   #trackSection .rt-legend span { display: inline-flex; align-items: center; gap: 5px; }
   #trackSection .rt-lg { display: inline-block; width: 16px; height: 16px; border-radius: 50%; font-style: normal; font-size: 11px; line-height: 16px; text-align: center; font-weight: 700; color: var(--rt-glyph); }
-  #trackSection .rt-lg.g { background: var(--rt-grey); } #trackSection .rt-lg.rd { background: var(--rt-read); } #trackSection .rt-lg.ok { background: var(--rt-ok); } #trackSection .rt-lg.help { background: var(--rt-hlp); } #trackSection .rt-lg.bad { background: var(--rt-bad); } #trackSection .rt-lg.skip { background: var(--rt-skip); } #trackSection .rt-lg.hw { background: none; width: auto; font-size: 0.8rem; color: var(--ink); text-decoration: underline dotted var(--rt-help); text-underline-offset: 3px; }
+  #trackSection .rt-lg.g { background: var(--rt-grey); } #trackSection .rt-lg.ringg, #trackSection .rt-lg.ringb { background: none; width: 12px; height: 12px; line-height: 12px; } #trackSection .rt-lg.ringg { box-shadow: 0 0 0 2px var(--rt-grey) inset; } #trackSection .rt-lg.ringb { box-shadow: 0 0 0 2px var(--rt-read) inset; } #trackSection .rt-lg.rd { background: var(--rt-read); } #trackSection .rt-lg.ok { background: var(--rt-ok); } #trackSection .rt-lg.help { background: var(--rt-hlp); } #trackSection .rt-lg.bad { background: var(--rt-bad); } #trackSection .rt-lg.skip { background: var(--rt-skip); } #trackSection .rt-lg.hw { background: none; width: auto; font-size: 0.8rem; color: var(--ink); text-decoration: underline dotted var(--rt-help); text-underline-offset: 3px; }
   #trackSection .rt-status { min-height: 1.4em; margin: 4px 0 2px; font-weight: 600; color: var(--ink); }
+  #trackSection .rt-stat-sync { flex: 3 1 340px; }
+  #trackSection .rt-sync2 { display: flex; gap: 22px; flex-wrap: wrap; }
+  #trackSection .rt-sync2 > div { display: flex; flex-direction: column; gap: 2px; }
+  #trackSection .rt-sub-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); }
+  #trackSection .rt-trials { margin: 0 0 8px; padding: 8px 12px; border: 1px solid var(--border); border-radius: 12px; background: var(--surface); font-size: 0.88rem; }
+  #trackSection .rt-trials[hidden] { display: none; }
+  #trackSection .rt-trials-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  #trackSection .rt-trials ol { margin: 6px 0 0; padding-left: 22px; }
   #trackSection .rt-micbar { display: flex; align-items: center; gap: 12px; margin: 4px 0 6px; flex-wrap: wrap; }
   #trackSection .rt-micbar[hidden] { display: none; }
   #trackSection .rt-miclive { color: #dc2626; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; }
   #trackSection .rt-miclive i { width: 10px; height: 10px; border-radius: 50%; background: #dc2626; display: inline-block; }
   :root[data-theme="dark"] #trackSection .rt-miclive { color: #f87171; } :root[data-theme="dark"] #trackSection .rt-miclive i { background: #f87171; }
+  /* once a word is scored its dot keeps a ring: blue if you tapped it, grey if you did not */
+  .rt-cell.is-correct .rt-dot::before, .rt-cell.is-helped .rt-dot::before, .rt-cell.is-incorrect .rt-dot::before, .rt-cell.is-skipped .rt-dot::before { box-shadow: 0 0 0 2px var(--surface), 0 0 0 4px var(--rt-grey); }
+  .rt-cell.tapped.is-correct .rt-dot::before, .rt-cell.tapped.is-helped .rt-dot::before, .rt-cell.tapped.is-incorrect .rt-dot::before, .rt-cell.tapped.is-skipped .rt-dot::before { box-shadow: 0 0 0 2px var(--surface), 0 0 0 4px var(--rt-read); }
   .rt-cell.bm .rt-dot::before { box-shadow: 0 0 0 4px var(--rt-ring); }
   #trackSection .rt-timing { min-height: 1.2em; margin: 0 0 8px; font-size: .78rem; color: var(--muted, #6b7280); }
   #trackSection .rt-passage { padding: 6px 2px 2px; }
@@ -1154,6 +1166,11 @@
   #trackSection .rt-passage p.para-block:last-child { margin-bottom: 0; }
   .rt-cell { display: inline-flex; flex-direction: column; align-items: center; vertical-align: top; margin: 0 0.08em 0.3em; }
   .rt-word { padding: 0 3px; border-radius: 5px; }
+  /* What the reader said, in small type right above the printed word. It never widens the word's column (width 0, min-width 100%). */
+  .rt-heard { display: block; width: 0; min-width: 100%; height: 1.2em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-align: center; font-size: 0.6em; line-height: 1.2em; color: var(--muted); font-style: italic; pointer-events: none; user-select: none; }
+  .rt-cell.is-incorrect .rt-heard { color: var(--rt-bad); font-weight: 600; font-style: normal; }
+  .rt-cell.covered .rt-heard { visibility: hidden; }
+  #rtPassage.no-heard .rt-heard { display: none; }
   .rt-dot { position: relative; width: 100%; min-width: 34px; height: 34px; padding: 0; border: 0; background: none; cursor: pointer; -webkit-tap-highlight-color: transparent; letter-spacing: 0; word-spacing: 0; }
   .rt-dot::before { content: ''; position: absolute; left: 50%; top: 50%; width: 18px; height: 18px; margin: -9px 0 0 -9px; border-radius: 50%; background: var(--rt-grey); color: var(--rt-glyph); font: 700 12px/18px system-ui, sans-serif; text-align: center; transition: transform 0.12s ease, background 0.12s ease; }
   .rt-word { cursor: pointer; }
@@ -1161,7 +1178,7 @@
   .rt-cell.hlp .rt-word { text-decoration: underline dotted var(--rt-help); text-decoration-thickness: 2px; text-underline-offset: 5px; }
   .rt-dot:hover::before { transform: scale(1.2); }
   .rt-dot:focus-visible { outline: 3px solid var(--accent); outline-offset: -2px; border-radius: 10px; }
-  .rt-cell.is-read .rt-dot::before { background: var(--rt-read); }
+  .rt-cell.tapped .rt-dot::before { background: var(--rt-read); }
   .rt-cell.is-correct .rt-dot::before { content: '\2713'; background: var(--rt-ok); }
   .rt-cell.is-helped .rt-dot::before { content: '\2713'; background: var(--rt-hlp); }
   .rt-cell.is-incorrect .rt-dot::before { content: '\2715'; background: var(--rt-bad); }
@@ -1249,16 +1266,18 @@
           <ul class="rt-help rt-steps">
             <li>Load a passage as a PDF (a scan or photo works too)</li>
             <li>Every word gets a grey dot underneath</li>
-            <li>Tap a dot, then read <b>just that word</b> aloud; the dot turns <b>blue</b> once it is recorded (tap it again to redo it)</li>
-            <li>Stuck? Tap the <b>word itself</b> to hear it read aloud (it is counted as help)</li>
-            <li>When you are done, press <b>Score my reading</b>: words are colored like the Q&amp;A Form, and accuracy counts words read right without help</li>
+            <li>Tap the dot under the word where you start; the microphone then <b>stays on</b> and the dot turns <b>blue</b> to show you tapped it. Read aloud, and tap the dot at the start of each new phrase or line as you go. Press <b>Stop listening</b> when you finish (or it turns off after 10 minutes)</li>
+            <li>Lost your place or want to redo a word? Tap its dot and read from there. What you say next is lined up with that word</li>
+            <li>Stuck? Tap the <b>word itself</b> to hear it read aloud (it is counted as help). The microphone pauses while the word is said</li>
+            <li>Guide My Pace does not save any audio, but your browser&rsquo;s speech service is listening the whole time the microphone is on</li>
+            <li>When you are done, press <b>Score Reading</b>: words are colored like the Q&amp;A Form, and you get four scores: <b>Strategy</b> (how much of what you read was tapped), <b>Read &amp; Tap Sync</b> (how many of the words you tapped were read right), <b>Instructional Accuracy</b> (words read right, with or without help) and <b>Independent Accuracy</b> (words read right without help). A blue or grey ring stays on each scored dot to show whether you tapped it</li>
+            <li>Want another go? Tap any dot and read again and press <b>Score Reading</b> again. Every score is kept as a trial, and the PDF reports on all of them</li>
             <li>Want fewer distractions? Turn on <b>Cover unread text</b> below to show only the part you are reading</li>
-            <li>Use <b>Save results</b> for a PDF or CSV report</li>
+            <li>Use <b>Save PDF</b> or <b>Save CSV</b> for a report</li>
             <li>Needs a microphone and Google Chrome or Microsoft Edge.</li>
           </ul>
           <div class="row">
             <button type="button" class="btn-primary" id="rtLoadBtn">Load PDF</button>
-            <button type="button" class="btn-secondary" id="rtResetBtn" disabled>Start over</button>
           </div>
           <input type="file" id="rtPdfInput" accept="application/pdf" hidden>
           <div class="status-line" id="rtLoadStatus"></div>
@@ -1267,9 +1286,9 @@
             <textarea class="fc-text" id="rtText" aria-label="Passage text" placeholder="The passage appears here after you load a PDF. You can fix anything the PDF reader got wrong, or paste a passage."></textarea>
             <div class="row"><button type="button" class="btn-secondary btn-xs" id="rtUseTextBtn">Use this text</button></div>
           </details>
-          <div class="cover-controls" style="margin-top:14px">
-            <label class="cover-toggle-label"><input type="checkbox" id="rtBmToggle"> Bookmark mode (microphone stays on)</label>
-            <details class="info-tip"><summary aria-label="More info">i</summary><div class="info-tip-body">For faster readers (90 words a minute or more), where tapping a dot for every word is too slow. Your first tap turns the microphone on and it stays on until you press <b>Stop listening</b> (or 10 minutes pass). Tap the dot under the word where you are starting, then tap again at the start of each new phrase or line as you read. Afterwards, what was heard is matched to the words between your taps. Turning this on sets Word Cover to 0 and Line Cover to 2 so the next dot is within reach. Guide My Pace does not save any audio, but your browser&rsquo;s speech service is listening the whole time the microphone is on.</div></details>
+          <div class="cover-controls" style="margin-top:6px">
+            <label class="cover-toggle-label"><input type="checkbox" id="rtHeardToggle" checked> Show what was heard above each word</label>
+            <details class="info-tip"><summary aria-label="More info">i</summary><div class="info-tip-body">Puts the words the microphone heard in small italic type just above the word you read, one for one. Words that do not match the printed word turn red once you press Score Reading, and a skipped word shows a dash. A word that sounds the same as the printed one (like war and wore) counts as correct and is shown with the printed spelling.</div></details>
           </div>
           <div class="cover-controls" style="margin-top:6px">
             <label class="cover-toggle-label"><input type="checkbox" id="rtCoverToggle"> Cover unread text</label>
@@ -1291,31 +1310,41 @@
 
     <div class="card" id="rtReadCard" hidden>
       <div class="rt-stats" id="rtStats">
-        <div class="rt-stat"><span class="rt-stat-label">Accuracy</span><b id="rtAcc">–</b><span class="rt-stat-sub" id="rtAccSub">Tap a dot to start</span></div>
+        <div class="rt-stat"><span class="rt-stat-label">Strategy</span><b id="rtSyncStrat">–</b><span class="rt-stat-sub" id="rtSyncStratSub">of words read were tapped</span></div>
+        <div class="rt-stat"><span class="rt-stat-label">Read &amp; Tap Sync</span><b id="rtSyncAcc">–</b><span class="rt-stat-sub" id="rtSyncAccSub">tapped words read right</span></div>
+        <div class="rt-stat"><span class="rt-stat-label">Instructional Accuracy</span><b id="rtInst">–</b><span class="rt-stat-sub" id="rtInstSub">right, with or without help</span></div>
+        <div class="rt-stat"><span class="rt-stat-label">Independent Accuracy</span><b id="rtAcc">–</b><span class="rt-stat-sub" id="rtAccSub">Tap a dot to start</span></div>
+        <div class="rt-stats-break"></div>
         <div class="rt-stat"><span class="rt-stat-label">Words read</span><b id="rtTried">0</b><span class="rt-stat-sub" id="rtTriedSub"></span></div>
         <div class="rt-stat"><span class="rt-stat-label">To practice</span><b id="rtMissCount">0</b><span class="rt-stat-sub">incorrect words</span></div>
         <div class="rt-stat"><span class="rt-stat-label">Help used</span><b id="rtHelpCount">0</b><span class="rt-stat-sub" id="rtHelpSub">words you heard read aloud</span></div>
       </div>
       <div class="row rt-save">
-        <button type="button" class="btn-primary" id="rtScoreBtn" disabled>Score my reading</button>
-        <button type="button" class="btn-secondary" id="rtSavePdfBtn" disabled>Save results as PDF</button>
-        <button type="button" class="btn-secondary" id="rtSaveCsvBtn" disabled>Save results as CSV</button>
+        <button type="button" class="btn-primary" id="rtScoreBtn" disabled>Score Reading</button>
+        <button type="button" class="btn-secondary" id="rtResetBtn" disabled>Start over</button>
+        <button type="button" class="btn-secondary" id="rtSavePdfBtn" disabled>Save PDF</button>
+        <button type="button" class="btn-secondary" id="rtSaveCsvBtn" disabled>Save CSV</button>
       </div>
       <div class="status-line" id="rtSaveStatus"></div>
       <div class="rt-legend" aria-hidden="true">
-        <span><i class="rt-lg g"></i> Not read yet</span>
-        <span><i class="rt-lg rd"></i> Read</span>
+        <span><i class="rt-lg g"></i> Not tapped yet</span>
+        <span><i class="rt-lg rd"></i> Tapped</span>
         <span><i class="rt-lg ok">✓</i> Correct</span>
         <span><i class="rt-lg help">✓</i> Correct with help</span>
         <span><i class="rt-lg bad">✕</i> Incorrect</span>
         <span><i class="rt-lg skip">–</i> Skipped</span>
+        <span><i class="rt-lg ringb"></i><i class="rt-lg ringg"></i> After scoring: blue ring = tapped, grey ring = not tapped</span>
         <span><i class="rt-lg hw">Aa</i> Tap a word to hear it</span>
+      </div>
+      <div class="rt-trials" id="rtTrials" hidden>
+        <div class="rt-trials-head"><span class="rt-stat-label">Trials (every score is kept for the report)</span> <button type="button" class="btn-secondary btn-xs" id="rtClearTrialsBtn">Clear trials</button></div>
+        <ol id="rtTrialList"></ol>
       </div>
       <div class="status-line rt-status" id="rtStatus" role="status" aria-live="polite"></div>
       <div class="rt-micbar" id="rtMicBar" hidden><span class="rt-miclive"><i></i> Microphone is on</span><button type="button" class="btn-primary btn-xs" id="rtStopBtn">Stop listening</button></div>
       <div class="rt-timing" id="rtTiming"></div>
       <div class="reading-area rt-passage" id="rtPassage"></div>
-      <div class="row"><button type="button" class="btn-primary" id="rtScoreBtn2" disabled>Score my reading</button></div>
+      <div class="row"><button type="button" class="btn-primary" id="rtScoreBtn2" disabled>Score Reading</button></div>
       <div class="rt-practice" id="rtPractice" hidden><span class="rt-stat-label">Words to practice:</span> <span id="rtPracticeList"></span></div>
     </div>
   </div>
@@ -2095,7 +2124,7 @@
 
 <!-- Build stamp. BUMP the version and data-updated (UTC, ISO 8601) every time this file changes, so
      "which copy am I running?" always has an answer. The time is shown in the viewer's own time zone. -->
-<div class="app-version" id="appVersionFooter" data-version="2.80" data-updated="2026-11-11T07:06:00Z">Version 2.80 · Last updated 2026-11-11 07:06 UTC</div>
+<div class="app-version" id="appVersionFooter" data-version="2.96" data-updated="2026-11-11T21:21:00Z">Version 2.96 · Last updated 2026-11-11 21:21 UTC</div>
 <script>
   (function () {
     try {
@@ -2585,7 +2614,13 @@
     ['towed', 'toad'], ['yoke', 'yolk'], ['you', 'ewe', 'yew'],  ['eye', 'i', 'aye'],
     ['mist', 'missed'], ['past', 'passed'], ['cash', 'cache'], ['cord', 'chord'], ['colonel', 'kernel'],
     ['mussel', 'muscle'], ['medal', 'meddle'], ['manner', 'manor'], ['miner', 'minor'], ['patience', 'patients'],
-    ['seas', 'seize', 'sees'], ['serf', 'surf']
+    ['seas', 'seize', 'sees'], ['serf', 'surf'],
+    ['war', 'wore'], ['bean', 'been'], ['hall', 'haul'], ['real', 'reel'], ['scene', 'seen'], ['seam', 'seem'], ['soul', 'sole'],
+    ['pale', 'pail'], ['pole', 'poll'], ['ring', 'wring'], ['rose', 'rows'], ['whose', "who's"], ['gate', 'gait'], ['jeans', 'genes'],
+    ['lane', 'lain'], ['leak', 'leek'], ['mall', 'maul'], ['might', 'mite'], ['plum', 'plumb'], ['rye', 'wry'], ['shoe', 'shoo'],
+    ['sign', 'sine'], ['tacks', 'tax'], ['taught', 'taut'], ['tents', 'tense'], ['world', 'whirled'], ['bore', 'boar'], ['flea', 'flee'],
+    ['hay', 'hey'], ['key', 'quay'], ['council', 'counsel'], ['ode', 'owed'], ['pride', 'pried'], ['rest', 'wrest'], ['rung', 'wrung'],
+    ['stationary', 'stationery'], ['wax', 'whacks'], ['we', 'wee'], ["i'll", 'aisle', 'isle'], ['chili', 'chilly', 'chile'], ['vale', 'veil']
   ];
   const HOMOPHONE_KEY = (function () {
     const map = Object.create(null);
@@ -12801,24 +12836,22 @@
 
   // ---------- Tools > Reading Tracker ----------
   // A passage becomes a row of words with a grey dot under each. Tapping a dot listens for ONE word with its own short-lived
-  // recognizer and just records what was heard; the dot turns blue. Nothing is judged while reading. "Score my reading" then compares
+  // recognizer and just records what was heard; the dot turns blue. Nothing is judged while reading. "Score Reading" then compares
   // every recorded word with the text (isMatch: same-sound words and small slips count) and colors the words the way the Q&A Form does:
   // green correct, light green correct with help, red incorrect, yellow skipped. Cover unread text uses the Q&A Form's reveal-ahead
   // calculation (coverMaskFor).
   const rtSection = document.getElementById('trackSection');
-  const rt = { title: '', words: [], paras: [], cells: [] };
-  let rtActive = null, rtMaskTimer = null;
+  const rt = { title: '', words: [], paras: [], cells: [], trials: [] };
+  let rtMaskTimer = null;
   // Bookmark mode: one continuous recognizer; a tap on a dot is a bookmark ("I am at this word") instead of a per-word recording.
-  const rtBm = { on: false, rec: null, paused: false, ready: false, committed: [], cur: [], anchors: [], timer: null, restarts: 0 };
+  const rtBm = { liveTimer: null, on: false, rec: null, paused: false, ready: false, committed: [], cur: [], anchors: [], timer: null, restarts: 0 };
   const rtBmMaxMs = 10 * 60 * 1000;
   const rtBmLag = 4; // words the recognizer can still be behind the reader when a bookmark is tapped
   const rtEl = function (id) { return document.getElementById(id); };
   const rtPassage = rtEl('rtPassage'), rtStatus = rtEl('rtStatus'), rtLoadStatus = rtEl('rtLoadStatus');
-  const rtBmToggle = rtEl('rtBmToggle'), rtCoverToggle = rtEl('rtCoverToggle'), rtWordsSel = rtEl('rtWordsSel'), rtLinesSel = rtEl('rtLinesSel');
-  const rtListenMs = 10000;
+  const rtCoverToggle = rtEl('rtCoverToggle'), rtWordsSel = rtEl('rtWordsSel'), rtLinesSel = rtEl('rtLinesSel');
   // The recognizer is stopped once what it has heard stops changing for this long, rather than waiting for it to decide the speech
   // has ended (that wait is what made each word take seconds).
-  const rtSettleMs = 450;
   const RT_EDGE = /^[^A-Za-z0-9À-ɏ]+|[^A-Za-z0-9À-ɏ]+$/g;
 
   function rtNorm(w) { return normalize(String(w).normalize('NFD').replace(/[̀-ͯ]/g, '')); }
@@ -12835,7 +12868,7 @@
       para.split(/\s+/).filter(Boolean).forEach(function (tok) {
         const norm = rtNorm(tok);
         if (!norm) { if (idxs.length) words[idxs[idxs.length - 1]].raw += ' ' + tok; else pre += tok + ' '; return; }
-        words.push({ raw: pre + tok, norm: norm, status: 'pending', reads: 0, alts: [], helps: 0 });
+        words.push({ raw: pre + tok, norm: norm, status: 'pending', reads: 0, alts: [], helps: 0, live: '', say: '', tapped: false });
         pre = ''; idxs.push(words.length - 1);
       });
       if (idxs.length) paras.push(idxs);
@@ -12850,7 +12883,8 @@
         const cell = document.createElement('span'); cell.className = 'rt-cell';
         const t = document.createElement('span'); t.className = 'rt-word'; t.textContent = rt.words[wi].raw;
         const d = document.createElement('button'); d.type = 'button'; d.className = 'rt-dot'; d.dataset.i = String(wi);
-        cell.appendChild(t); cell.appendChild(d); p.appendChild(cell);
+        const h = document.createElement('span'); h.className = 'rt-heard'; h.setAttribute('aria-hidden', 'true');
+        cell.appendChild(h); cell.appendChild(t); cell.appendChild(d); p.appendChild(cell);
         if (k < idxs.length - 1) p.appendChild(document.createTextNode(' '));
         rt.cells[wi] = cell;
       });
@@ -12870,14 +12904,34 @@
   function rtScheduleMask() { clearTimeout(rtMaskTimer); rtMaskTimer = setTimeout(rtApplyMask, 150); }
   const RT_STATES = ['read', 'correct', 'helped', 'incorrect', 'skipped'];
   const RT_LABEL = { pending: 'Not read', read: 'Read, not scored yet', correct: 'Correct', helped: 'Correct with help', incorrect: 'Incorrect', skipped: 'Skipped' };
+  // The heard text is shown the way the printed word is written: Capitalized, ALL CAPS, or lower case.
+  function rtCaseLike(printed, heard) {
+    const t = String(heard).toLowerCase(); if (!t) return t;
+    const letters = printed.replace(/[^A-Za-z]/g, '');
+    if (letters.length > 1 && letters === letters.toUpperCase()) return t.toUpperCase();
+    if (/^[A-Z]/.test(letters)) return t.charAt(0).toUpperCase() + t.slice(1);
+    return t;
+  }
+  // What to show above a word. A word that sounds the same as the printed one (war / wore) is marked right and shown with the
+  // printed spelling, the way it would be written in the text; anything else is shown as heard, in the printed word's capitalization.
+  function rtAnnotText(w, text) {
+    const printed = rtShown(w);
+    return String(text).split(/\s+/).filter(Boolean).map(function (tok, k) {
+      const n = rtNorm(tok);
+      if (n && n !== w.norm && rtIsMatch(n, w.norm)) return printed;
+      const c = rtCaseLike(printed, tok);
+      return k === 0 ? c : (c === c.toUpperCase() && /[A-Z]{2}/.test(printed) ? c : c.toLowerCase());
+    }).join(' ');
+  }
   function rtPaintCell(i) {
     const w = rt.words[i], c = rt.cells[i]; if (!w || !c) return;
     RT_STATES.forEach(function (s) { c.classList.toggle('is-' + s, w.status === s); });
-    c.classList.toggle('live', !!rtActive && rtActive.idx === i); c.classList.toggle('ready', !!rtActive && rtActive.idx === i && !!rtActive.ready);
-    c.classList.toggle('hlp', w.helps > 0);
+    c.classList.toggle('hlp', w.helps > 0); c.classList.toggle('tapped', !!w.tapped);
     c.classList.toggle('bm', rtBm.on && rtBm.anchors.length > 0 && rtBm.anchors[rtBm.anchors.length - 1].j === i);
-    const al = 'Read the word ' + w.raw + ' (' + RT_LABEL[w.status].toLowerCase() + (w.helps ? ', you heard it read aloud' : '') + ')';
+    const al = 'Read the word ' + w.raw + ' (' + RT_LABEL[w.status].toLowerCase() + (w.tapped ? ', tapped' : ', not tapped') + (w.helps ? ', you heard it read aloud' : '') + ')';
     if (c.lastChild.getAttribute('aria-label') !== al) c.lastChild.setAttribute('aria-label', al);
+    const ht = w.live ? rtAnnotText(w, w.live) : (w.say ? rtAnnotText(w, w.say) : (w.reads > 0 && w.alts.length ? rtAnnotText(w, w.alts[0]) : (w.status === 'skipped' ? '\u2013' : '')));
+    const he = c.firstChild; if (he.textContent !== ht) { he.textContent = ht; he.title = ht; }
   }
   // No argument: repaint everything. A list of word numbers: repaint just those (quick, used while a word is being listened to).
   function rtPaint(only) {
@@ -12885,20 +12939,53 @@
     rt.words.forEach(function (w, i) { rtPaintCell(i); });
     rtApplyMask(); rtUpdateStats();
   }
+  // Read & Tap Sync. Accuracy: tapped words read right / tapped words. Strategy: tapped words / words read (the same words the
+  // Independent Accuracy is out of). Both stay blank until Score Reading has been pressed.
+  function rtSyncStats() {
+    const st = rtStats(); let tapped = 0, tappedRight = 0, tappedRead = 0;
+    rt.words.forEach(function (w) {
+      if (!w.tapped) return;
+      if (w.status === 'correct' || w.status === 'helped' || w.status === 'incorrect' || w.status === 'skipped') tapped++;
+      if (w.status === 'correct') tappedRight++;
+      if (w.status === 'correct' || w.status === 'helped' || w.status === 'incorrect') tappedRead++;
+    });
+    const pc = function (a, b) { return b ? Math.round(a / b * 100) : null; };
+    return { tapped: tapped, tappedRight: tappedRight, tappedRead: tappedRead, read: st.scored, accPct: st.scored ? pc(tappedRight, tapped) : null, stratPct: st.scored ? pc(tappedRead, st.scored) : null };
+  }
+  function rtUpdateSync() {
+    const y = rtSyncStats();
+    rtEl('rtSyncAcc').textContent = y.accPct == null ? '–' : y.accPct + '%';
+    rtEl('rtSyncAccSub').textContent = y.accPct == null ? 'tapped words read right' : y.tappedRight + ' of ' + y.tapped + ' tapped ' + (y.tapped === 1 ? 'word' : 'words') + ' read right';
+    rtEl('rtSyncStrat').textContent = y.stratPct == null ? '–' : y.stratPct + '%';
+    rtEl('rtSyncStratSub').textContent = y.stratPct == null ? 'of words read were tapped' : y.tappedRead + ' of ' + y.read + ' words read were tapped';
+  }
+  const rtPctText = function (v) { return v == null ? '–' : v + '%'; };
+  function rtRenderTrials() {
+    const box = rtEl('rtTrials'), list = rtEl('rtTrialList'); box.hidden = !rt.trials.length;
+    list.textContent = '';
+    rt.trials.forEach(function (t) {
+      const li = document.createElement('li');
+      li.textContent = 'Read & Tap Sync ' + rtPctText(t.sync.accPct) + ' · Instructional Accuracy ' + rtPctText(t.inst) + ' · Independent Accuracy ' + rtPctText(t.pct) + ' · Strategy ' + rtPctText(t.sync.stratPct) + ' · ' + t.c.correct + ' correct, ' + t.c.helped + ' with help, ' + t.c.incorrect + ' incorrect, ' + t.c.skipped + ' skipped · ' + t.at.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+      list.appendChild(li);
+    });
+  }
   function rtStats() {
     const c = { pending: 0, read: 0, correct: 0, helped: 0, incorrect: 0, skipped: 0 };
     rt.words.forEach(function (w) { c[w.status]++; });
     const n = rt.words.length, read = rt.words.filter(function (w) { return w.reads > 0; }).length, scored = c.correct + c.helped + c.incorrect;
     const helpedWords = rt.words.filter(function (w) { return w.helps > 0; }).length, helpTaps = rt.words.reduce(function (a, w) { return a + w.helps; }, 0);
     const wrong = rt.words.map(function (w, i) { return { w: w, i: i }; }).filter(function (x) { return x.w.status === 'incorrect'; });
-    return { n: n, read: read, c: c, scored: scored, unscored: c.read, wrong: wrong, helpedWords: helpedWords, helpTaps: helpTaps, pct: scored ? Math.round(c.correct / scored * 100) : null };
+    return { n: n, read: read, c: c, scored: scored, unscored: c.read, wrong: wrong, helpedWords: helpedWords, helpTaps: helpTaps, pct: scored ? Math.round(c.correct / scored * 100) : null, instPct: scored ? Math.round((c.correct + c.helped) / scored * 100) : null };
   }
   function rtUpdateStats() {
     const st = rtStats();
     rtEl('rtAcc').textContent = st.pct == null ? '–' : st.pct + '%';
     rtEl('rtAccSub').textContent = st.pct != null
       ? st.c.correct + ' of ' + st.scored + ' read right without help' + (st.unscored ? ' · ' + st.unscored + ' not scored yet' : '')
-      : (st.read ? 'Press “Score my reading”' : 'Tap a dot to start');
+      : (st.read ? 'Press “Score Reading”' : 'Tap a dot to start');
+    rtEl('rtInst').textContent = st.instPct == null ? '–' : st.instPct + '%';
+    rtEl('rtInstSub').textContent = st.instPct == null ? 'right, with or without help' : (st.c.correct + st.c.helped) + ' of ' + st.scored + ' read right, with or without help';
+    rtUpdateSync(); rtRenderTrials();
     rtEl('rtTried').textContent = st.read + ' of ' + st.n;
     rtEl('rtTriedSub').textContent = st.n - st.read + ' to go';
     rtEl('rtMissCount').textContent = String(st.wrong.length);
@@ -12919,104 +13006,33 @@
   }
 
   // ---- listening for one word (recording only: nothing is judged here) ----
+  // Strict: the same word, or a word that sounds the same (to / two / too, digits for number words). No close-enough spellings.
+  function rtIsMatch(a, b) { return !!a && !!b && (a === b || soundKey(a) === soundKey(b)); }
   function rtHeardMatches(heardText, w) {
     const toks = String(heardText).split(/\s+/).map(rtNorm).filter(Boolean);
     if (!toks.length) return false;
     const plain = function (x) { return x.replace(/'/g, ''); };
     const cand = toks.concat([toks.join('')]); // a hyphenated or compound word may come back as two words
-    return cand.some(function (t) { return isMatch(t, w.norm) || isMatch(plain(t), plain(w.norm)); });
-  }
-  function rtCancel() {
-    if (!rtActive) return;
-    const a = rtActive; rtActive = null; a.done = true; clearTimeout(a.timer); clearTimeout(a.settle);
-    try { a.rec.abort(); } catch (e) { /* already stopped */ }
-    rtPaint([a.idx]);
-  }
-  // kind: 'got' (something was heard; `heard` is the list of alternatives) | 'silence' | 'denied' | 'nomic' | 'error'
-  function rtFinish(act, kind, heard) {
-    if (act.done) return;
-    act.done = true; clearTimeout(act.timer); clearTimeout(act.settle);
-    if (rtActive === act) rtActive = null;
-    try { act.rec.abort(); } catch (e) { /* already stopped */ }
-    const w = rt.words[act.idx], shown = rtShown(w), wasRecorded = act.recorded;
-    // Once something has been heard the word stays recorded, whatever ends the listening.
-    if (act.recorded && kind !== 'got') kind = 'kept';
-    if (kind === 'got' || kind === 'kept') {
-      if (kind === 'got') w.alts = heard.slice();
-      if (!act.recorded) { w.reads++; w.status = 'read'; act.recorded = true; act.tRec = performance.now(); }
-      rtSay('“' + shown + '” recorded. Tap the next dot, or press Score my reading when you are done.');
-      rtTiming(act);
-    } else if (kind === 'denied') {
-      rtSay("Guide My Pace can't use the microphone. Allow microphone access for this site, then tap the dot again.");
-    } else if (kind === 'nomic') {
-      rtSay('No microphone was found. Check that one is connected, then tap the dot again.');
-    } else if (kind === 'error') {
-      rtSay('Listening stopped (' + (heard || 'error') + '). Tap the dot to try again.');
-    } else {
-      rtSay("I didn't hear anything. Tap the dot and say “" + shown + '”.');
-    }
-    if (act.recorded && !wasRecorded) rtPaint(); else rtPaint([act.idx]);
-  }
-  // A small readout of where the time went on the last word, to help find what is slow on a real device.
-  function rtTiming(act) {
-    const el = rtEl('rtTiming'); if (!el) return;
-    const sec = function (t) { return t == null ? '–' : ((t - act.t0) / 1000).toFixed(1) + ' s'; };
-    el.textContent = 'Speed check, last word: microphone ready ' + sec(act.tReady) + ' · first words heard ' + sec(act.tHeard) + ' · marked blue ' + sec(act.tRec);
-  }
-  function rtListen(i) {
-    const w = rt.words[i]; if (!w) return;
-    if (rtBmToggle.checked) { rtBmTap(i); return; }
-    if (rtActive) { const same = rtActive.idx === i; rtCancel(); if (same) { rtSay('Stopped listening.'); return; } }
-    if (!ExamSR) { rtSay("This browser can't listen to speech. Use Google Chrome or Microsoft Edge."); return; }
-    if (examEngineListening) examEngineStop();
-    try { window.speechSynthesis.cancel(); } catch (e) { /* ignore */ }
-    const rec = new ExamSR();
-    rec.continuous = false; rec.interimResults = true; rec.maxAlternatives = 3; rec.lang = 'en-US';
-    const act = { idx: i, rec: rec, done: false, timer: null, settle: null, recorded: false, t0: performance.now(), tReady: null, tHeard: null, tRec: null };
-    rtActive = act;
-    const shown = rtShown(w);
-    // The microphone takes a moment to open. Until it has, say so (and keep the dot grey), so nobody starts talking too early.
-    const ready = function () { if (act.done || act.ready) return; act.ready = true; act.tReady = performance.now(); rtSay('Listening for “' + shown + '” … say it now.'); const c = rt.cells[i]; if (c) c.classList.add('ready'); };
-    if ('onaudiostart' in rec) rec.onaudiostart = ready; else rec.onstart = ready;
-    rec.onresult = function (ev) {
-      if (act.done) return;
-      const heard = []; let final = false;
-      for (let r = ev.resultIndex; r < ev.results.length; r++) {
-        const res = ev.results[r];
-        for (let k = 0; k < res.length; k++) { const t = String(res[k].transcript || '').trim(); if (t) heard.push(t); }
-        if (res.isFinal) final = true;
-      }
-      clearTimeout(act.settle);
-      if (!heard.length) { if (final) rtFinish(act, 'silence'); return; }
-      if (final) { if (act.tHeard == null) act.tHeard = performance.now(); rtFinish(act, 'got', heard); return; }
-      // Mark the word as read the moment the first words arrive; the recognizer keeps refining what it heard until it settles.
-      const w2 = rt.words[act.idx];
-      if (act.tHeard == null) act.tHeard = performance.now();
-      w2.alts = heard.slice();
-      if (!act.recorded) {
-        act.recorded = true; act.tRec = performance.now(); w2.reads++; w2.status = 'read';
-        rtSay('“' + rtShown(w2) + '” recorded. Tap the next dot, or press Score my reading when you are done.');
-        rtPaint();
-      }
-      act.settle = setTimeout(function () { rtFinish(act, 'got', heard); }, rtSettleMs);
-    };
-    rec.onerror = function (ev) {
-      if (act.done) return;
-      if (ev.error === 'not-allowed' || ev.error === 'service-not-allowed') rtFinish(act, 'denied');
-      else if (ev.error === 'audio-capture') rtFinish(act, 'nomic');
-      else if (ev.error !== 'no-speech' && ev.error !== 'aborted') rtFinish(act, 'error', ev.error);
-    };
-    rec.onend = function () { if (!act.done) rtFinish(act, 'silence'); };
-    try { rec.start(); }
-    catch (e) { rtActive = null; act.done = true; rtSay('Could not start listening. Tap the dot to try again.'); return; }
-    act.timer = setTimeout(function () { rtFinish(act, 'silence'); }, rtListenMs);
-    rtSay('Getting the microphone ready …');
-    rtPaint([i]);
+    return cand.some(function (t) { return rtIsMatch(t, w.norm) || rtIsMatch(plain(t), plain(w.norm)); });
   }
 
   // ---- Bookmark mode ----
-  function rtBmTokens() { return (rtBm.committed.join(' ') + ' ' + rtBm.cur.join(' ')).split(/\s+/).map(rtNorm).filter(Boolean); }
-  function rtBmCommit() { if (rtBm.cur.length) rtBm.committed.push(rtBm.cur.join(' ')); rtBm.cur = []; }
+  // Some speech services start the next result by repeating the last word or two of the one before. A repeat right at a result
+  // boundary is dropped so it is not counted as an extra word.
+  function rtBmTokens() {
+    const texts = rtBm.committed.concat(rtBm.cur).filter(Boolean), out = [];
+    let prev = [];
+    texts.forEach(function (t) {
+      let toks = t.split(/\s+/).map(rtNorm).filter(Boolean);
+      for (let k = Math.min(3, prev.length, toks.length); k >= 1; k--) {
+        if (prev.slice(-k).join(' ') === toks.slice(0, k).join(' ')) { toks = toks.slice(k); break; }
+      }
+      toks.forEach(function (x) { out.push(x); });
+      if (toks.length) prev = toks.length >= 3 ? toks : prev.concat(toks).slice(-3);
+    });
+    return out;
+  }
+  function rtBmCommit() { rtBm.cur.forEach(function (t) { if (t) rtBm.committed.push(t); }); rtBm.cur = []; }
   function rtBmUi() { rtEl('rtMicBar').hidden = !rtBm.on; }
   function rtBmShowHeard() {
     const t = rtBmTokens(); rtEl('rtTiming').textContent = rtBm.on ? 'Heard: ' + (t.length > 8 ? '… ' : '') + t.slice(-8).join(' ') : '';
@@ -13034,7 +13050,7 @@
     rec.onresult = function (ev) {
       if (rtBm.rec !== rec) return;
       for (let r = ev.resultIndex; r < ev.results.length; r++) { const t = String((ev.results[r][0] || {}).transcript || '').trim(); rtBm.cur[r] = t; }
-      rtBmShowHeard();
+      rtBmShowHeard(); rtBmLive();
     };
     rec.onerror = function (ev) {
       if (rtBm.rec !== rec) return;
@@ -13054,22 +13070,21 @@
     if (!ExamSR) { rtSay("This browser can't listen to speech. Use Google Chrome or Microsoft Edge."); return; }
     const w = rt.words[i]; if (!w) return;
     if (!rtBm.on) {
-      rtCancel();
-      if (examEngineListening) examEngineStop();
+        if (examEngineListening) examEngineStop();
       try { window.speechSynthesis.cancel(); } catch (e) { /* ignore */ }
       rtBm.on = true; rtBm.paused = false; rtBm.ready = false; rtBm.committed = []; rtBm.cur = []; rtBm.restarts = 0; rtBm.rec = null;
-      rtBm.anchors = [{ j: i, p: 0 }];
+      rtBm.anchors = [{ j: i, p: 0 }]; w.tapped = true;
       rtBm.timer = setTimeout(function () { rtBmStop('limit'); }, rtBmMaxMs);
       rtSay('Getting the microphone ready …');
       rtBmUi(); rtBmShowHeard(); rtBmStartRec(); rtPaint();
       return;
     }
     const prev = rtBm.anchors[rtBm.anchors.length - 1];
-    rtBm.anchors.push({ j: i, p: rtBmTokens().length });
+    rtBm.anchors.push({ j: i, p: rtBmTokens().length }); w.tapped = true;
     // The words you have just read through turn blue straight away (they are checked when you stop).
     for (let k = prev.j; k < i; k++) { const x = rt.words[k]; if (x.reads === 0) { x.reads = 1; x.status = 'read'; x.alts = []; } }
     rtSay('Bookmark at “' + rtShown(w) + '”. Keep reading.');
-    rtPaint();
+    rtPaint(); rtBmLive();
   }
   // Pause while the device says a word (so it does not hear itself), then pick up again.
   function rtBmPause() {
@@ -13082,22 +13097,38 @@
   // Match the words heard to the words between the bookmarks. Cost: a match 0; a different word 1; a word never heard 1;
   // a heard word that matches nothing 0.5.
   function rtBmTokMatch(t, w) { return t === w.norm || rtHeardMatches(t, w); }
-  function rtBmAlignChunk(startWord, endWord, toks, openEnd) {
-    const m = endWord - startWord + 1, n = toks.length;
-    const D = [], mt = [];
-    for (let a = 0; a <= m; a++) { D.push(new Float32Array(n + 1).fill(Infinity)); mt.push(new Int8Array(n + 1)); }
+  // A heard word that is the same as, or nearly, the word that was tapped (a word said without its 's, or a near miss).
+  function rtBmLooksLike(t, w) {
+    const pl = function (x) { return x.replace(/['\u2019]/g, ''); }, a = pl(t), b = pl(w.norm);
+    if (!a || !b) return false;
+    if (a === b || rtBmTokMatch(t, w)) return true;
+    const sh = a.length <= b.length ? a : b, lo = a.length <= b.length ? b : a;
+    if (sh.length >= 3 && lo.indexOf(sh) === 0 && lo.length - sh.length <= 2) return true;
+    if (a.length >= 4 && b.length >= 4 && Math.abs(a.length - b.length) <= 1) { let d = 0; for (let i = 0, j = 0; i < a.length && j < b.length; i++, j++) { if (a[i] !== b[j]) { d++; if (d > 1) return false; if (a.length > b.length) j--; else if (b.length > a.length) i--; } } return d <= 1; }
+    return false;
+  }
+  function rtBmJoinMatch(t1, t2, w) { const j = t1 + t2, pl = function (x) { return x.replace(/'/g, ''); }; return rtIsMatch(j, w.norm) || rtIsMatch(pl(j), pl(w.norm)); }
+  // Heard words from number `guessLen` on may only be matched to a printed word that fits them, never guessed at.
+  function rtBmAlignChunk(startWord, endWord, toks, openEnd, insCost, guessLen, subWords) {
+    const ins0 = insCost || 1, SUB = 0.9, m = endWord - startWord + 1, n = toks.length, gl = guessLen == null ? n : guessLen, sw = subWords == null ? Infinity : subWords;
+    const D = [], mt = [], mt2 = [];
+    for (let a = 0; a <= m; a++) { D.push(new Float32Array(n + 1).fill(Infinity)); mt.push(new Int8Array(n + 1)); mt2.push(new Int8Array(n + 1)); }
     // Only cells near the diagonal are worked out (a reader does not drift more than a few dozen words from the text), which keeps
     // a long stretch between bookmarks quick.
     const band = Math.max(40, Math.abs(m - n) + 10);
     D[0][0] = 0;
-    for (let b = 1; b <= n && b <= band; b++) D[0][b] = D[0][b - 1] + 0.5;
+    const insC = function (b) { return b >= 2 && toks[b - 1] === toks[b - 2] ? 0.3 : ins0; }; // a word said twice in a row costs little to ignore
+    for (let b = 1; b <= n && b <= band; b++) D[0][b] = D[0][b - 1] + insC(b);
     for (let a = 1; a <= m && a <= band; a++) D[a][0] = D[a - 1][0] + 1;
     for (let a = 1; a <= m; a++) {
       const w = rt.words[startWord + a - 1];
       for (let b = Math.max(1, a - band); b <= n && b <= a + band; b++) {
         const ok = rtBmTokMatch(toks[b - 1], w); mt[a][b] = ok ? 1 : 0;
-        const diag = D[a - 1][b - 1] + (ok ? 0 : 1), del = D[a - 1][b] + 1, ins = D[a][b - 1] + 0.5;
-        D[a][b] = Math.min(diag, del, ins);
+        const diag = D[a - 1][b - 1] + (ok ? 0 : (b > gl || a > sw ? Infinity : SUB)), del = D[a - 1][b] + 1, ins = D[a][b - 1] + insC(b);
+        let best2 = Infinity;
+        // two heard words that together make the printed word ("well known" for well-known, "can not" for cannot)
+        if (b >= 2 && !ok && rtBmJoinMatch(toks[b - 2], toks[b - 1], w)) { mt2[a][b] = 1; best2 = D[a - 1][b - 2] + 0.1; }
+        D[a][b] = Math.min(diag, del, ins, best2);
       }
     }
     // Where the alignment ends: a closed chunk uses every expected word and as few heard words as it needs; an open one uses
@@ -13105,36 +13136,101 @@
     let ea = m, eb = n;
     if (!openEnd) { let best = Infinity; for (let b = 0; b <= n; b++) if (D[m][b] < best - 1e-6) { best = D[m][b]; eb = b; } }
     else { let best = Infinity; for (let a = 0; a <= m; a++) if (D[a][n] < best - 1e-6) { best = D[a][n]; ea = a; } }
-    const out = new Array(ea).fill(null);
+    const out = new Array(ea).fill(null), idx = new Array(ea).fill(-1), lead = [];
+    for (let e = 0; e <= ea; e++) lead.push([]);
     let a = ea, b = eb;
     while (a > 0 || b > 0) {
-      if (a > 0 && b > 0 && Math.abs(D[a][b] - (D[a - 1][b - 1] + (mt[a][b] ? 0 : 1))) < 1e-6) { out[a - 1] = toks[b - 1]; a--; b--; }
+      if (a > 0 && b > 1 && mt2[a][b] && Math.abs(D[a][b] - (D[a - 1][b - 2] + 0.1)) < 1e-6) { out[a - 1] = toks[b - 2] + ' ' + toks[b - 1]; idx[a - 1] = b - 1; a--; b -= 2; }
+      else if (a > 0 && b > 0 && Math.abs(D[a][b] - (D[a - 1][b - 1] + (mt[a][b] ? 0 : (b > gl || a > sw ? Infinity : SUB)))) < 1e-6) { out[a - 1] = toks[b - 1]; idx[a - 1] = b - 1; a--; b--; }
       else if (a > 0 && Math.abs(D[a][b] - (D[a - 1][b] + 1)) < 1e-6) { a--; }
-      else if (b > 0) { b--; }
+      else if (b > 0) { lead[a].unshift(toks[b - 1]); b--; } // a heard word that matches nothing: kept so it can still be shown
       else { a--; }
     }
-    return { out: out, usedWords: ea, usedToks: eb };
+    // Heard words that fit nowhere are shown with the word they came before (or, at the very end, the word before them).
+    const say = new Array(Math.max(ea, 1)).fill(null).map(function () { return []; });
+    for (let e = 0; e < ea; e++) { lead[e].forEach(function (t) { say[e].push(t); }); if (out[e] != null) say[e].push(out[e]); }
+    if (lead[ea].length) { const k = ea > 0 ? ea - 1 : 0; lead[ea].forEach(function (t) { say[k].push(t); }); }
+    return { out: out, idx: idx, say: say.map(function (x) { return x.join(' '); }), usedWords: ea, usedToks: eb };
   }
-  function rtBmAlign() {
-    const A = rtBm.anchors; if (!A.length) return;
+  // The last printed word of the paragraph that word j is in. A stretch with no closing bookmark may only guess at words up to
+  // there; after that, a heard word has to actually match a printed word to count (so repeating words you already tapped does
+  // not spill into the next paragraph as wrong answers).
+  function rtParaEnd(j) {
+    for (let k = 0; k < rt.paras.length; k++) { const ix = rt.paras[k]; if (ix.indexOf(j) >= 0) return ix[ix.length - 1]; }
+    return j;
+  }
+  // live = true: only work out what to show above each word while the reader is still reading (nothing is recorded or judged).
+  // The bookmarks mark where each stretch of reading starts; the heard words are matched to the printed words by content, so it does
+  // not matter if the speech service is a few seconds behind the taps. Heard words that arrived well after the next bookmark can
+  // still be matched to the stretch before it, but only when they match a word there (never as a guess).
+  function rtBmAlign(live) {
+    const A = rtBm.anchors; if (!A.length) return [];
     const toks = rtBmTokens(), n = rt.words.length; let q = 0;
+    const jobs = [];
+    // Guessing at a misheard word is allowed up to the end of the paragraph of the furthest word bookmarked so far (after going back
+    // to re-read, the words you already got to are fair game again).
+    const farJ = A.reduce(function (m, x) { return Math.max(m, x.j); }, 0);
     for (let k = 0; k < A.length; k++) {
       const cur = A[k], next = A[k + 1];
       const closed = !!next && next.j > cur.j;
-      const upper = next ? Math.min(toks.length, next.p + rtBmLag) : toks.length;
-      const win = toks.slice(Math.min(q, upper), upper);
-      const endWord = closed ? next.j - 1 : Math.min(n - 1, cur.j + win.length + rtBmLag);
+      // A bookmark further back (you went back and tapped an earlier word) closes this stretch exactly where the tap happened, so
+      // everything heard after it belongs to the new stretch that starts at the tapped word. Only the last few words said just
+      // before the tap (the speech service can be a moment behind) are still added here, and only when they carry on from where
+      // this stretch ended.
+      const back = !!next && !closed, subReach = Math.max(rtParaEnd(cur.j), rtParaEnd(farJ));
+      const upper = next ? (back ? Math.min(toks.length, next.p) : Math.min(toks.length, next.p + rtBmLag)) : toks.length;
+      if (!closed && q >= upper) continue; // nothing was heard for this stretch (do not touch words that an earlier stretch covered)
+      const win = closed ? toks.slice(Math.min(q, toks.length)) : toks.slice(q, upper);
+      const winLen = Math.max(0, Math.min(win.length, upper - q));
+      let endWord = closed ? next.j - 1 : Math.min(n - 1, cur.j + win.length + rtBmLag);
       if (endWord < cur.j) continue;
-      for (let x = cur.j; x <= endWord; x++) { const w = rt.words[x]; w.reads = 0; w.status = 'pending'; w.alts = []; }
-      const r = rtBmAlignChunk(cur.j, endWord, win, !closed);
-      r.out.forEach(function (tok, e) { if (tok != null) { const w = rt.words[cur.j + e]; w.reads = 1; w.status = 'read'; w.alts = [tok]; } });
+      // While reading is going on, a half-said word at the end is shown above the word it is heading for.
+      let r = rtBmAlignChunk(cur.j, endWord, win, !closed, live && !next ? 1.2 : 1, closed ? winLen : win.length, closed ? Infinity : subReach - cur.j + 1);
+      if (back) {
+        let wi = cur.j + r.usedWords, ext = 0;
+        for (let e = 0; e < rtBmLag && upper + e < toks.length; e++) {
+          const tk = toks[upper + e];
+          if (rtBmLooksLike(tk, rt.words[next.j])) break; // that is the word you went back to: it belongs to the new stretch
+          if (wi < n && rtBmTokMatch(tk, rt.words[wi])) { wi++; ext++; }
+          else if (wi + 1 < n && rtBmTokMatch(tk, rt.words[wi + 1])) { wi += 2; ext++; }
+          else break;
+        }
+        if (ext) {
+          const win2 = toks.slice(q, upper + ext);
+          endWord = Math.min(n - 1, cur.j + win2.length + rtBmLag);
+          r = rtBmAlignChunk(cur.j, endWord, win2, true, 1, win2.length, subReach - cur.j + 1);
+        }
+      }
+      // A stretch with no closing bookmark only replaces the words it actually matched, so re-recording one word does not wipe
+      // the words after it that were read in an earlier go.
+      jobs.push({ j: cur.j, end: closed ? endWord : cur.j + r.usedWords - 1, r: r, q0: q, k: k });
       q += r.usedToks;
     }
+    const changed = [];
+    if (live) {
+      const show = {};
+      jobs.forEach(function (jb) { jb.r.say.forEach(function (t, e) { if (t) show[jb.j + e] = t; }); });
+      for (let x = 0; x < n; x++) { const w = rt.words[x], t = show[x] || ''; if (w.live !== t) { w.live = t; changed.push(x); } }
+    } else {
+      jobs.forEach(function (jb) { for (let x = jb.j; x <= jb.end; x++) { const w = rt.words[x]; w.reads = 0; w.status = 'pending'; w.alts = []; w.live = ''; w.say = ''; } });
+      jobs.forEach(function (jb) {
+        jb.r.say.forEach(function (t, e) { if (t) rt.words[jb.j + e].say = t; });
+        jb.r.out.forEach(function (tok, e) { if (tok != null) { const w = rt.words[jb.j + e]; w.reads = 1; w.status = 'read'; w.alts = [tok]; } });
+      });
+    }
+    return changed;
+  }
+  function rtBmLive() {
+    if (rtBm.liveTimer || !rtBm.on) return;
+    rtBm.liveTimer = setTimeout(function () {
+      rtBm.liveTimer = null; if (!rtBm.on) return;
+      rtBmAlign(true).forEach(rtPaintCell);
+    }, 120);
   }
   const RT_BM_MSG = {
-    done: 'Microphone off. Press Score my reading to see the results.',
-    limit: 'The microphone turned off after 10 minutes. Press Score my reading to see the results.',
-    hidden: 'The microphone turned off because the page was hidden. Press Score my reading to see the results.',
+    done: 'Microphone off. Press Score Reading to see the results.',
+    limit: 'The microphone turned off after 10 minutes. Press Score Reading to see the results.',
+    hidden: 'The microphone turned off because the page was hidden. Press Score Reading to see the results.',
     denied: "Guide My Pace can't use the microphone. Allow microphone access for this site, then tap a dot to start again.",
     nomic: 'No microphone was found. Check that one is connected, then tap a dot to start again.'
   };
@@ -13142,37 +13238,32 @@
     if (!rtBm.on) return;
     rtBm.on = false; clearTimeout(rtBm.timer);
     const rec = rtBm.rec; rtBm.rec = null; try { if (rec) rec.abort(); } catch (e) { /* already stopped */ }
-    rtBmCommit();
+    rtBmCommit(); clearTimeout(rtBm.liveTimer); rtBm.liveTimer = null;
+    rt.words.forEach(function (x) { x.live = ''; });
     rtBmAlign();
     rtBmUi();
     const heard = rtBmTokens().length;
     rtEl('rtTiming').textContent = heard ? 'Heard ' + heard + (heard === 1 ? ' word.' : ' words.') : '';
-    if (reason === 'error') rtSay('Listening stopped (' + (detail || 'error') + '). Press Score my reading, or tap a dot to start again.');
+    if (reason === 'error') rtSay('Listening stopped (' + (detail || 'error') + '). Press Score Reading, or tap a dot to start again.');
     else if (reason !== 'score') rtSay(heard || reason !== 'done' ? (RT_BM_MSG[reason] || RT_BM_MSG.done) : "I didn't hear anything. Tap a dot and start reading.");
     rtPaint();
   }
   rtEl('rtStopBtn').addEventListener('click', function () { rtBmStop('done'); });
   document.addEventListener('visibilitychange', function () { if (document.hidden && rtBm.on) rtBmStop('hidden'); });
-  rtBmToggle.addEventListener('change', function () {
-    rtCancel();
-    if (rtBmToggle.checked) { rtWordsSel.value = '0'; rtLinesSel.value = '2'; rtApplyMask(); rtSay('Bookmark mode: tap the dot under the word where you start. The microphone then stays on until you press Stop listening.'); }
-    else { rtBmStop('done'); rtSay('Bookmark mode is off. Tap a dot, then read just that word.'); }
-  });
 
   // Tapping the word itself: the device says it, and it is counted as help for that word.
   function rtHelp(i) {
     const w = rt.words[i], c = rt.cells[i]; if (!w || !c || c.classList.contains('covered')) return;
-    rtCancel();
     w.helps++;
     const shown = rtShown(w);
     if (rtBm.on) { rtBmPause(); speakTts(shown, null, function () { setTimeout(rtBmResume, 300); }); }
     else speakTts(shown, null);
-    rtSay('Here is “' + shown + '”. Tap its dot and say it yourself.');
+    rtSay('Here is “' + shown + '”.' + (rtBm.on ? ' Keep reading.' : ' Tap its dot to read from there.'));
     rtPaint();
   }
   rtPassage.addEventListener('click', function (e) {
     const d = e.target.closest ? e.target.closest('.rt-dot') : null;
-    if (d) { if (!d.disabled) rtListen(parseInt(d.dataset.i, 10)); return; }
+    if (d) { if (!d.disabled) rtBmTap(parseInt(d.dataset.i, 10)); return; }
     const wd = e.target.closest ? e.target.closest('.rt-word') : null;
     if (wd) rtHelp(Array.prototype.indexOf.call(rt.cells, wd.parentNode));
   });
@@ -13181,30 +13272,38 @@
   function rtScore() {
     if (rtBm.on) rtBmStop('score');
     if (!rt.words.some(function (w) { return w.reads > 0; })) return;
-    rtCancel();
     let last = -1; rt.words.forEach(function (w, i) { if (w.reads > 0) last = i; });
     rt.words.forEach(function (w, i) {
       if (w.reads > 0) w.status = w.alts.some(function (t) { return rtHeardMatches(t, w); }) ? (w.helps > 0 ? 'helped' : 'correct') : 'incorrect';
       else w.status = i < last ? 'skipped' : 'pending';
     });
+    // Every score is a trial.
+    const prev = rt.trials[rt.trials.length - 1];
+    const st = rtStats(), sync = rtSyncStats();
+    const trial = {
+      at: new Date(), pct: st.pct, inst: st.instPct, c: Object.assign({}, st.c), scored: st.scored, read: st.read, n: st.n, helpedWords: st.helpedWords, helpTaps: st.helpTaps, sync: sync,
+      words: rt.words.map(function (w) { return { status: w.status, heard: w.say || w.alts[0] || '', helps: w.helps, tapped: w.tapped }; })
+    };
+    const sig = function (t) { return JSON.stringify([t.words, t.sync]); };
+    const same = prev && sig(prev) === sig(trial);
+    if (!same) rt.trials.push(trial);
     rtPaint();
-    const st = rtStats();
-    rtSay('Scored: ' + st.pct + '% (' + st.c.correct + ' of ' + st.scored + ' words read right without help). ' +
-      st.c.helped + ' correct with help, ' + st.c.incorrect + ' incorrect, ' + st.c.skipped + ' skipped.');
+    rtSay((same ? 'Nothing has changed since trial ' + rt.trials.length + '. ' : 'Scored (trial ' + rt.trials.length + '): ') + 'Read & Tap Sync ' + rtPctText(sync.accPct) + ' (' + sync.tappedRight + ' of ' + sync.tapped + ' tapped words read right), Instructional Accuracy ' + rtPctText(st.instPct) + ' (' + (st.c.correct + st.c.helped) + ' of ' + st.scored + ' words read right, with or without help), Independent Accuracy ' + rtPctText(st.pct) + ' (' + st.c.correct + ' of ' + st.scored + ' words read right without help; ' +
+      st.c.helped + ' correct with help, ' + st.c.incorrect + ' incorrect, ' + st.c.skipped + ' skipped). Strategy ' + rtPctText(sync.stratPct) + ' (' + sync.tappedRead + ' of ' + sync.read + ' words read were tapped). Tap any dot to try again, then press Score Reading again.');
   }
   ['rtScoreBtn', 'rtScoreBtn2'].forEach(function (id) { rtEl(id).addEventListener('click', rtScore); });
 
   // ---- loading a passage ----
   function rtApplyText(text, title) {
-    rtCancel(); rtBmStop('done');
-    rtBuild(text); rt.title = title || '';
+    rtBmStop('done');
+    rtBuild(text); rt.title = title || ''; rt.trials = [];
     rtEl('rtText').value = text;
     rtEl('rtTextBox').hidden = !rt.words.length;
     rtEl('rtReadCard').hidden = !rt.words.length;
     const lf = rtEl('rtLoadedFile'); lf.hidden = !title; lf.textContent = title ? '· ' + title : '';
     if (!rt.words.length) { rtLoadStatus.textContent = 'No words were found in that text.'; rtUpdateStats(); return; }
     rtLoadStatus.textContent = 'Ready: ' + rt.words.length + ' words' + (title ? ' from ' + title : '') + '.';
-    rtSay('Tap a dot, then read that word aloud.'); rtEl('rtSaveStatus').textContent = '';
+    rtSay('Tap the dot under the word where you start reading.'); rtEl('rtSaveStatus').textContent = '';
     rtRenderAll();
   }
   rtEl('rtLoadBtn').addEventListener('click', function () { rtEl('rtPdfInput').click(); });
@@ -13219,11 +13318,13 @@
   });
   rtEl('rtUseTextBtn').addEventListener('click', function () { rtApplyText(rtEl('rtText').value, rt.title); });
   rtEl('rtResetBtn').addEventListener('click', function () {
-    rtCancel(); rtBmStop('done');
-    rt.words.forEach(function (w) { w.status = 'pending'; w.reads = 0; w.alts = []; w.helps = 0; });
-    rtSay('Started over. Tap a dot, then read that word aloud.'); rtEl('rtSaveStatus').textContent = '';
+    rtBmStop('done');
+    rt.words.forEach(function (w) { w.status = 'pending'; w.reads = 0; w.alts = []; w.helps = 0; w.live = ''; w.say = ''; w.tapped = false; });
+    rtSay('Started over' + (rt.trials.length ? ' (your earlier trials are kept for the report)' : '') + '. Tap the dot under the word where you start reading.'); rtEl('rtSaveStatus').textContent = '';
     rtPaint();
   });
+  rtEl('rtHeardToggle').addEventListener('change', function () { rtPassage.classList.toggle('no-heard', !this.checked); rtApplyMask(); });
+  rtEl('rtClearTrialsBtn').addEventListener('click', function () { rt.trials = []; rtUpdateStats(); rtSay('Trials cleared.'); });
   rtCoverToggle.addEventListener('change', rtApplyMask);
   rtWordsSel.addEventListener('change', rtApplyMask);
   rtLinesSel.addEventListener('change', rtApplyMask);
@@ -13235,8 +13336,19 @@
   // ---- saving the results (a PDF report and a CSV, one row per word). Saving scores first, so the file always matches the screen. ----
   function rtFileBase() { return (String(rt.title || 'Reading_Tracker').replace(/\.(pdf|csv|txt)$/i, '').replace(/[^A-Za-z0-9 _.-]+/g, '').trim().replace(/\s+/g, '_') || 'Reading_Tracker') + '_results'; }
   function rtBuildCsv() {
-    const rows = [['word', 'result', 'times_recorded', 'times_heard_read_aloud', 'what_was_heard']];
-    rt.words.forEach(function (w) { rows.push([w.raw, RT_LABEL[w.status], w.reads, w.helps, w.alts[0] || '']); });
+    const head = ['word', 'result', 'times_recorded', 'times_heard_read_aloud', 'what_was_heard'];
+    rt.trials.forEach(function (t, k) { head.push('trial_' + (k + 1) + '_result', 'trial_' + (k + 1) + '_what_was_heard'); });
+    const rows = [head];
+    rt.words.forEach(function (w, i) {
+      const row = [w.raw, RT_LABEL[w.status], w.reads, w.helps, w.say || w.alts[0] || ''];
+      rt.trials.forEach(function (t) { const x = t.words[i]; row.push(x ? RT_LABEL[x.status] : '', x ? x.heard : ''); });
+      rows.push(row);
+    });
+    if (rt.trials.length) {
+      rows.push([]);
+      rows.push(['trial', 'time', 'read_and_tap_sync', 'instructional_accuracy', 'independent_accuracy', 'strategy', 'correct', 'correct_with_help', 'incorrect', 'skipped']);
+      rt.trials.forEach(function (t, k) { rows.push([k + 1, t.at.toLocaleString(), t.sync.accPct == null ? '' : t.sync.accPct + '%', t.inst == null ? '' : t.inst + '%', t.pct == null ? '' : t.pct + '%', t.sync.stratPct == null ? '' : t.sync.stratPct + '%', t.c.correct, t.c.helped, t.c.incorrect, t.c.skipped]); });
+    }
     return '﻿' + rows.map(function (r) { return r.map(csvCell).join(','); }).join('\r\n') + '\r\n';
   }
   function rtBuildPdf() {
@@ -13258,7 +13370,11 @@
     if (v) { doc.text('Guide My Pace version ' + v, M, y); y += 12; }
     y += 8; doc.setTextColor(0, 0, 0);
     doc.setFont('helvetica', 'bold'); doc.setFontSize(14);
-    doc.text('Accuracy: ' + (st.pct == null ? 'no words scored' : st.pct + '% (' + c.correct + ' of ' + st.scored + ' words read right without help)'), M, y); y += 17;
+    const sy = rtSyncStats();
+    doc.text('Read & Tap Sync: ' + (sy.accPct == null ? 'not scored' : sy.accPct + '% (' + sy.tappedRight + ' of ' + sy.tapped + ' tapped words read right)'), M, y); y += 15;
+    doc.text('Instructional Accuracy: ' + (st.instPct == null ? 'no words scored' : st.instPct + '% (' + (c.correct + c.helped) + ' of ' + st.scored + ' words read right, with or without help)'), M, y); y += 15;
+    doc.text('Independent Accuracy: ' + (st.pct == null ? 'no words scored' : st.pct + '% (' + c.correct + ' of ' + st.scored + ' words read right without help)'), M, y); y += 15;
+    doc.text('Strategy: ' + (sy.stratPct == null ? 'not scored' : sy.stratPct + '% (' + sy.tappedRead + ' of ' + sy.read + ' words read were tapped)'), M, y); y += 17;
     doc.setFont('helvetica', 'normal'); doc.setFontSize(10);
     doc.text('Words read ' + st.read + ' of ' + st.n + '  |  Correct with help ' + c.helped + '  |  Incorrect ' + c.incorrect + '  |  Skipped ' + c.skipped + '  |  Words helped ' + st.helpedWords + ' (' + st.helpTaps + ' tap' + (st.helpTaps === 1 ? '' : 's') + ')', M, y); y += 16;
     let lx = M;
@@ -13266,7 +13382,8 @@
       doc.setFillColor(FC_TINT[it[0]][0], FC_TINT[it[0]][1], FC_TINT[it[0]][2]); doc.rect(lx, y - 8, 10, 10, 'F');
       const t = it[1] + ' (' + c[it[0]] + ')'; doc.setFontSize(9); doc.setTextColor(0, 0, 0); doc.text(t, lx + 14, y); lx += 14 + doc.getTextWidth(t) + 16;
     });
-    y += 12; doc.setTextColor(107, 114, 128); doc.text('Not read: ' + c.pending + ' (no color)', M, y); doc.setTextColor(0, 0, 0); y += 22;
+    y += 12; doc.setTextColor(107, 114, 128); doc.text('Not read: ' + c.pending + ' (no color)', M, y); doc.setTextColor(0, 0, 0); y += 16;
+    doc.setFontSize(9); const lgl = doc.splitTextToSize('Dots: grey = not tapped yet, blue = tapped. After scoring, a blue ring = tapped and a grey ring = not tapped. Small italic text above a word = what was heard.', W - 2 * M); doc.text(lgl, M, y); y += lgl.length * 11 + 12;
     function list(title, items) {
       if (!items.length) return;
       room(40); doc.setFont('helvetica', 'bold'); doc.setFontSize(12); doc.text(title, M, y); y += 15;
@@ -13274,22 +13391,72 @@
       items.forEach(function (t) { const ls = doc.splitTextToSize(safe('- ' + t), W - 2 * M - 10); room(ls.length * 13 + 3); doc.text(ls, M + 6, y); y += ls.length * 13 + 3; });
       y += 10;
     }
+    if (rt.trials.length) {
+      room(30 + rt.trials.length * 14); doc.setFont('helvetica', 'bold'); doc.setFontSize(12); doc.text('All trials (' + rt.trials.length + ')', M, y); y += 16;
+      doc.setFont('helvetica', 'normal'); doc.setFontSize(10);
+      rt.trials.map(function (t, k) { return { t: t, k: k }; }).reverse().forEach(function (x) {
+        const t = x.t, k = x.k;
+        const line = 'Trial ' + (k + 1) + ' (' + t.at.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' }) + '): Read & Tap Sync ' + rtPctText(t.sync.accPct) + ', Instructional Accuracy ' + rtPctText(t.inst) + ', Independent Accuracy ' + rtPctText(t.pct) + ', Strategy ' + rtPctText(t.sync.stratPct) + ', correct ' + t.c.correct + ', with help ' + t.c.helped + ', incorrect ' + t.c.incorrect + ', skipped ' + t.c.skipped;
+        const ls = doc.splitTextToSize(safe(line), W - 2 * M - 10); room(ls.length * 13 + 3); doc.text(ls, M + 6, y); y += ls.length * 13 + 3;
+      });
+      y += 12;
+    }
     list('Words to practice (incorrect)', st.wrong.map(function (x) { return x.w.raw + (x.w.alts[0] ? ' - heard: ' + x.w.alts[0] : ''); }));
     list('Words heard read aloud (help)', rt.words.filter(function (w) { return w.helps > 0; }).map(function (w) { return w.raw + ' - ' + w.helps + ' tap' + (w.helps === 1 ? '' : 's') + ' (' + RT_LABEL[w.status].toLowerCase() + ')'; }));
-    room(60); doc.setFont('helvetica', 'bold'); doc.setFontSize(12); doc.text('The passage, color-coded', M, y); y += 20;
-    rt.paras.forEach(function (idxs) {
-      doc.setFont('helvetica', 'normal'); doc.setFontSize(11);
-      let x = M;
-      idxs.forEach(function (i) {
-        const w = rt.words[i], t = safe(w.raw), tw = doc.getTextWidth(t), tint = FC_TINT[w.status];
-        if (x > M && x + tw > rightEdge) { x = M; y += 19; }
-        if (y > BOTTOM) { doc.addPage(); y = TOP; x = M; }
-        if (tint) { doc.setFillColor(tint[0], tint[1], tint[2]); doc.rect(x - 1.5, y - 9.4, tw + 3, 13.2, 'F'); }
-        doc.setTextColor(0, 0, 0); doc.text(t, x, y);
-        x += tw + 4.9;
+    // One cell per word, like the screen: what was heard (small, above), the printed word (tinted by result), and its dot (grey = not
+    // tapped yet / blue = tapped; once scored it shows the result mark with a blue ring if tapped or a grey ring if not).
+    const PDOT = { grey: [156, 163, 175], blue: [37, 99, 235], correct: [22, 163, 74], helped: [101, 163, 13], incorrect: [220, 38, 38], skipped: [234, 179, 8] };
+    function pdfDot(cx, cy, status, tapped) {
+      const scored = status === 'correct' || status === 'helped' || status === 'incorrect' || status === 'skipped';
+      const fill = scored ? PDOT[status] : (tapped ? PDOT.blue : PDOT.grey);
+      if (scored) { const rc = tapped ? PDOT.blue : PDOT.grey; doc.setDrawColor(rc[0], rc[1], rc[2]); doc.setLineWidth(1.1); doc.circle(cx, cy, 6.1, 'S'); }
+      doc.setFillColor(fill[0], fill[1], fill[2]); doc.circle(cx, cy, 4.2, 'F');
+      if (scored) {
+        const dark = status === 'skipped'; doc.setDrawColor(dark ? 31 : 255, dark ? 41 : 255, dark ? 55 : 255); doc.setLineWidth(1);
+        if (status === 'incorrect') { doc.line(cx - 1.9, cy - 1.9, cx + 1.9, cy + 1.9); doc.line(cx - 1.9, cy + 1.9, cx + 1.9, cy - 1.9); }
+        else if (status === 'skipped') doc.line(cx - 2, cy, cx + 2, cy);
+        else { doc.line(cx - 2.2, cy + 0.2, cx - 0.6, cy + 1.8); doc.line(cx - 0.6, cy + 1.8, cx + 2.3, cy - 1.7); }
+      }
+      doc.setDrawColor(0, 0, 0); doc.setLineWidth(0.2);
+    }
+    function drawPassage(title, cellOf) {
+      room(80); doc.setFont('helvetica', 'bold'); doc.setFontSize(12); doc.setTextColor(0, 0, 0); const tl = doc.splitTextToSize(title, W - 2 * M); doc.text(tl, M, y); y += 12 + 14 * tl.length;
+      rt.paras.forEach(function (idxs) {
+        let x = M;
+        idxs.forEach(function (i) {
+          const w = rt.words[i], ce = cellOf(i), t = safe(w.raw), heard = ce.heard ? safe(ce.heard) : '';
+          doc.setFont('helvetica', 'normal'); doc.setFontSize(11); const tw = doc.getTextWidth(t);
+          doc.setFont('helvetica', 'italic'); doc.setFontSize(6.5); const hw = heard ? doc.getTextWidth(heard) : 0;
+          const cw = Math.max(tw, hw, 12);
+          if (x > M && x + cw > rightEdge) { x = M; y += 40; }
+          if (y + 20 > BOTTOM) { doc.addPage(); y = TOP + 14; x = M; }
+          const cx = x + cw / 2, tint = FC_TINT[ce.status];
+          if (heard) {
+            doc.setFont('helvetica', 'italic'); doc.setFontSize(6.5);
+            if (ce.status === 'incorrect') doc.setTextColor(185, 28, 28); else doc.setTextColor(107, 114, 128);
+            doc.text(heard, cx, y - 12, { align: 'center' });
+          }
+          doc.setFont('helvetica', 'normal'); doc.setFontSize(11);
+          if (tint) { doc.setFillColor(tint[0], tint[1], tint[2]); doc.rect(cx - tw / 2 - 1.5, y - 9.4, tw + 3, 13.2, 'F'); }
+          doc.setTextColor(0, 0, 0); doc.text(t, cx - tw / 2, y);
+          if (ce.helps > 0) { doc.setDrawColor(217, 119, 6); doc.setLineWidth(0.8); doc.setLineDashPattern([1, 1.5], 0); doc.line(cx - tw / 2, y + 2.6, cx + tw / 2, y + 2.6); doc.setLineDashPattern([], 0); doc.setLineWidth(0.2); doc.setDrawColor(0, 0, 0); }
+          pdfDot(cx, y + 11, ce.status, ce.tapped);
+          x += cw + 8;
+        });
+        y += 44;
       });
-      y += 28;
-    });
+    }
+    // what the screen shows above a word, for the current reading and for each saved trial
+    const heardNow = function (w) { return w.live ? rtAnnotText(w, w.live) : (w.say ? rtAnnotText(w, w.say) : (w.reads > 0 && w.alts.length ? rtAnnotText(w, w.alts[0]) : (w.status === 'skipped' ? '–' : ''))); };
+    // Newest trial first (trial 4, 3, 2, 1). The newest is drawn from the passage as it stands now.
+    if (!rt.trials.length) drawPassage('The passage, with what was heard and which words were tapped', function (i) { const w = rt.words[i]; return { status: w.status, heard: heardNow(w), tapped: w.tapped, helps: w.helps }; });
+    for (let k = rt.trials.length - 1; k >= 0; k--) {
+      const t = rt.trials[k], latest = k === rt.trials.length - 1;
+      if (!latest && t.words.length !== rt.words.length) continue;
+      drawPassage('Trial ' + (k + 1) + (latest ? ' (latest)' : '') + ': Read & Tap Sync ' + rtPctText(t.sync.accPct) + ', Instructional Accuracy ' + rtPctText(t.inst) + ', Independent Accuracy ' + rtPctText(t.pct) + ', Strategy ' + rtPctText(t.sync.stratPct), latest
+        ? function (i) { const w = rt.words[i]; return { status: w.status, heard: heardNow(w), tapped: w.tapped, helps: w.helps }; }
+        : function (i) { const tw = t.words[i]; return { status: tw.status, heard: tw.status === 'skipped' && !tw.heard ? '\u2013' : (tw.heard ? rtAnnotText(rt.words[i], tw.heard) : ''), tapped: tw.tapped, helps: tw.helps }; });
+    }
     if (bad.length) { doc.setFontSize(8); doc.setTextColor(107, 114, 128); room(14); doc.text('Some characters this PDF cannot show were replaced with "?".', M, y); }
     return doc;
   }
@@ -13314,12 +13481,12 @@
       qaSection.hidden = true; homeSection.hidden = true; rtSection.hidden = false;
       rtApplyMask(); rtScheduleMask();
     } else {
-      rtCancel(); rtBmStop('done'); rtSection.hidden = true; homeSection.hidden = false;
+      rtBmStop('done'); rtSection.hidden = true; homeSection.hidden = false;
     }
     window.scrollTo(0, 0);
   }
   // Called by the other tools' own show functions when they open: just closes the tracker (they hide Home themselves).
-  function rtHide() { if (!rtSection.hidden) { rtCancel(); rtBmStop('done'); rtSection.hidden = true; } }
+  function rtHide() { if (!rtSection.hidden) { rtBmStop('done'); rtSection.hidden = true; } }
   rtEl('rtMenuLink').addEventListener('click', function (e) { e.preventDefault(); toolsMenu.open = false; rtShow(true); });
   rtEl('homeRtBtn').addEventListener('click', function () { rtShow(true); });
 
